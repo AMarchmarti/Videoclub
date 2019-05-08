@@ -7,6 +7,13 @@
     <persistence-unit name="PERSISTENCE">
         <description> Ejercicio Videoclub con JSF y Primefaces</description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>org.brujula.Model.Peliculas</class>
+        <class>org.brujula.Model.Seleccion</class>
+        <class>org.brujula.Model.Usuario</class>
+        <class>org.brujula.Model.Alquileres</class>
+        <class>org.brujula.Model.Generos</class>
+        <class>org.brujula.Model.Personas</class>
+        <class>org.brujula.Model.Telefonos</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
@@ -15,6 +22,14 @@
             <property name="javax.persistence.jdbc.password" value="root" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/videoclub"/>
+            <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/videoclub"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/videoclub"/>
+            <property name="openjpa.ConnectionDriverName" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/videoclub"/>
+            <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
         </properties>
     </persistence-unit>
 
