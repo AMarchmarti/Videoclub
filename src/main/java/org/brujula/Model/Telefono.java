@@ -1,15 +1,20 @@
 package org.brujula.Model;
 
+import com.sun.deploy.xml.GeneralEntity;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "telefonos")
 public class Telefono {
+
     private Integer id;
+    private Persona id_persona;
     private String numero;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer getId() {
         return id;
@@ -17,6 +22,18 @@ public class Telefono {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_persona")
+    public Persona getId_persona() {
+        return id_persona;
+    }
+
+    public void setId_persona(Persona id_persona) {
+        this.id_persona = id_persona;
     }
 
     @Basic

@@ -14,6 +14,7 @@ public class Persona {
     private Date fechaNacimiento;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer getId() {
         return id;
@@ -54,6 +55,7 @@ public class Persona {
     }
 
     @Basic
+    @Temporal(TemporalType.DATE)
     @Column(name = "fechaNacimiento")
     public Date getFechaNacimiento() {
         return fechaNacimiento;

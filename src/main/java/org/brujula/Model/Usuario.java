@@ -1,26 +1,26 @@
 package org.brujula.Model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Usuario {
-    private Integer idPersona;
+@Table(name = "usuario")
+public class Usuario implements Serializable {
+    private Persona idPersona;
     private String usuario;
     private String clave;
     private Object tipo;
     private Boolean estado;
 
     @Id
-    @Column(name = "id_persona")
-    public Integer getIdPersona() {
+    @OneToOne
+    @JoinColumn(name = "id_persona", nullable = false)
+    public Persona getIdPersona() {
         return idPersona;
     }
 
-    public void setIdPersona(Integer idPersona) {
+    public void setIdPersona(Persona idPersona) {
         this.idPersona = idPersona;
     }
 
