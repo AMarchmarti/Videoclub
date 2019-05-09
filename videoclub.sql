@@ -8,19 +8,14 @@ USE videoclub;
 drop table if exists personas;
 create table personas(
 	id int not null auto_increment,
+    dni varchar(20) not null,
     nombre varchar(100) not null,
     apellidos varchar(100) not null,
     sexo enum('M','F') not null,
     fechaNacimiento datetime not null,
+    telefono varchar(10) not null,
     primary key(id));
     
-drop table if exists telefonos;
-create table telefonos(
-	id int not null auto_increment,
-    id_persona int not null,
-    numero varchar(9) not null,
-    primary key(id),
-    foreign key(id_persona) references personas(id));
 
 DROP TABLE IF EXISTS usuario;
 CREATE TABLE usuario(

@@ -1,17 +1,29 @@
 package org.brujula.Model;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.Objects;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "alquileres")
-public class Alquiler {
-    private Integer idAlquiler;
-    private Timestamp fechaAlquiler;
+public class Alquiler implements Serializable {
 
     @Id
-    @Column(name = "id_alquiler")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idAlquiler;
+
+    @ManyToOne
+    @JoinColumn(name = "id_persona", nullable = false)
+    private Persona idPersona;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pelicula", nullable = false)
+    private Pelicula idPelicula;
+
+    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaAlquiler;
+
     public Integer getIdAlquiler() {
         return idAlquiler;
     }
@@ -20,27 +32,27 @@ public class Alquiler {
         this.idAlquiler = idAlquiler;
     }
 
-    @Basic
-    @Column(name = "fechaAlquiler")
-    public Timestamp getFechaAlquiler() {
+    public Persona getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(Persona idPersona) {
+        this.idPersona = idPersona;
+    }
+
+    public Pelicula getIdPelicula() {
+        return idPelicula;
+    }
+
+    public void setIdPelicula(Pelicula idPelicula) {
+        this.idPelicula = idPelicula;
+    }
+
+    public Date getFechaAlquiler() {
         return fechaAlquiler;
     }
 
-    public void setFechaAlquiler(Timestamp fechaAlquiler) {
+    public void setFechaAlquiler(Date fechaAlquiler) {
         this.fechaAlquiler = fechaAlquiler;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Alquiler that = (Alquiler) o;
-        return Objects.equals(idAlquiler, that.idAlquiler) &&
-                Objects.equals(fechaAlquiler, that.fechaAlquiler);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idAlquiler, fechaAlquiler);
     }
 }

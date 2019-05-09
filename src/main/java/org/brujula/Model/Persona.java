@@ -1,21 +1,36 @@
 package org.brujula.Model;
 
 import javax.persistence.*;
-import java.sql.Date;
-
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "personas")
-public class Persona {
-    private Integer id;
-    private String nombre;
-    private String apellidos;
-    private String sexo;
-    private Date fechaNacimiento;
+public class Persona implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    private Integer id;
+
+    @Column
+    private String dni;
+
+    @Column
+    private String nombre;
+
+    @Column
+    private String apellidos;
+
+    @Column
+    private String sexo;
+
+    @Column
+    @Temporal(TemporalType.DATE)
+    private Date fechaNacimiento;
+
+    @Column
+    private String telefono;
+
     public Integer getId() {
         return id;
     }
@@ -24,8 +39,14 @@ public class Persona {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "nombre")
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -34,8 +55,6 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    @Basic
-    @Column(name = "apellidos")
     public String getApellidos() {
         return apellidos;
     }
@@ -44,8 +63,6 @@ public class Persona {
         this.apellidos = apellidos;
     }
 
-    @Basic
-    @Column(name = "sexo")
     public String getSexo() {
         return sexo;
     }
@@ -54,9 +71,6 @@ public class Persona {
         this.sexo = sexo;
     }
 
-    @Basic
-    @Temporal(TemporalType.DATE)
-    @Column(name = "fechaNacimiento")
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -65,5 +79,11 @@ public class Persona {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
 
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 }

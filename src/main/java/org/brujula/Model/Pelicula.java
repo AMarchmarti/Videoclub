@@ -1,18 +1,29 @@
 package org.brujula.Model;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "peliculas")
-public class Pelicula {
-    private Integer idPelicula;
-    private String titulo;
-    private String resumen;
-    private Boolean estado;
+public class Pelicula implements Serializable{
 
     @Id
-    @Column(name = "id_pelicula")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idPelicula;
+
+    @Column
+    private String titulo;
+
+    @Column
+    private String resumen;
+
+    @Column
+    private Boolean estado = true;
+
+    @ManyToOne
+    @JoinColumn(name = "genero")
+    private Genero genero;
+
     public Integer getIdPelicula() {
         return idPelicula;
     }
@@ -21,8 +32,6 @@ public class Pelicula {
         this.idPelicula = idPelicula;
     }
 
-    @Basic
-    @Column(name = "titulo")
     public String getTitulo() {
         return titulo;
     }
@@ -31,8 +40,6 @@ public class Pelicula {
         this.titulo = titulo;
     }
 
-    @Basic
-    @Column(name = "resumen")
     public String getResumen() {
         return resumen;
     }
@@ -41,8 +48,6 @@ public class Pelicula {
         this.resumen = resumen;
     }
 
-    @Basic
-    @Column(name = "estado")
     public Boolean getEstado() {
         return estado;
     }
@@ -51,19 +56,11 @@ public class Pelicula {
         this.estado = estado;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pelicula peliculas = (Pelicula) o;
-        return Objects.equals(idPelicula, peliculas.idPelicula) &&
-                Objects.equals(titulo, peliculas.titulo) &&
-                Objects.equals(resumen, peliculas.resumen) &&
-                Objects.equals(estado, peliculas.estado);
+    public Genero getGenero() {
+        return genero;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idPelicula, titulo, resumen, estado);
+    public void setGenero(Genero genero) {
+        this.genero = genero;
     }
 }

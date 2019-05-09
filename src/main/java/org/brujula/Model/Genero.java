@@ -1,45 +1,33 @@
 package org.brujula.Model;
 
+
 import javax.persistence.*;
-import java.util.Objects;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "generos")
-public class Genero {
-    private Integer idGenero;
-    private String nombre;
+public class Genero implements Serializable {
 
     @Id
-    @Column(name = "id_genero")
-    public Integer getIdGenero() {
-        return idGenero;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column
+    private String nombre;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdGenero(Integer idGenero) {
-        this.idGenero = idGenero;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    @Basic
-    @Column(name = "nombre")
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Genero generos = (Genero) o;
-        return Objects.equals(idGenero, generos.idGenero) &&
-                Objects.equals(nombre, generos.nombre);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idGenero, nombre);
     }
 }

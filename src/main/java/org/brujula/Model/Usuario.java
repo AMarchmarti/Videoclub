@@ -1,31 +1,38 @@
 package org.brujula.Model;
 
+
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {
-    private Persona idPersona;
-    private String usuario;
-    private String clave;
-    private Object tipo;
-    private Boolean estado;
 
     @Id
     @OneToOne
     @JoinColumn(name = "id_persona", nullable = false)
-    public Persona getIdPersona() {
-        return idPersona;
+    private Persona idUsuario;
+
+    @Column
+    private String usuario;
+
+    @Column
+    private String clave;
+
+    @Column
+    private String tipo;
+
+    @Column
+    private Short estado = 1;
+
+    public Persona getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdPersona(Persona idPersona) {
-        this.idPersona = idPersona;
+    public void setIdUsuario(Persona idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    @Basic
-    @Column(name = "usuario")
     public String getUsuario() {
         return usuario;
     }
@@ -34,8 +41,6 @@ public class Usuario implements Serializable {
         this.usuario = usuario;
     }
 
-    @Basic
-    @Column(name = "clave")
     public String getClave() {
         return clave;
     }
@@ -44,40 +49,19 @@ public class Usuario implements Serializable {
         this.clave = clave;
     }
 
-    @Basic
-    @Column(name = "tipo")
-    public Object getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(Object tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    @Basic
-    @Column(name = "estado")
-    public Boolean getEstado() {
+    public Short getEstado() {
         return estado;
     }
 
-    public void setEstado(Boolean estado) {
+    public void setEstado(Short estado) {
         this.estado = estado;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Usuario usuario1 = (Usuario) o;
-        return Objects.equals(idPersona, usuario1.idPersona) &&
-                Objects.equals(usuario, usuario1.usuario) &&
-                Objects.equals(clave, usuario1.clave) &&
-                Objects.equals(tipo, usuario1.tipo) &&
-                Objects.equals(estado, usuario1.estado);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idPersona, usuario, clave, tipo, estado);
     }
 }
