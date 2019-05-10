@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+  <component name="DataSourceManagerImpl" format="xml" hash="368496331">
     <data-source source="LOCAL" name="VideoClub" uuid="efbb3222-eba1-459f-b5fe-5876d030b1e2">
-      <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/videoclub</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
