@@ -25,6 +25,9 @@ public class UsuarioController implements Serializable {
     }
 
     public Usuario getUsuario() {
+        if (usuario == null){
+            System.out.println("usuario es nulo");
+        }
         return usuario;
     }
 
@@ -33,6 +36,9 @@ public class UsuarioController implements Serializable {
     }
 
     public Persona getPersona() {
+        if(persona == null){
+            System.out.println("persona es nulo");
+        }
         return persona;
     }
 
