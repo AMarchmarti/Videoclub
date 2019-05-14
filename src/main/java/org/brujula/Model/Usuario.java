@@ -8,10 +8,10 @@ import java.io.Serializable;
 @Table(name = "usuario")
 public class Usuario implements Serializable {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "dni_persona", nullable = false)
     private Persona idUsuario;
 

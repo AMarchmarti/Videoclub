@@ -9,25 +9,26 @@ import java.util.Date;
 public class Persona implements Serializable {
 
     @Id
+    @Column(name = "dni")
     private String dni;
 
-    @Column
+    @Column(name = "nombre")
     private String nombre;
 
-    @Column
+    @Column(name = "apellidos")
     private String apellidos;
 
-    @Column
+    @Column(name = "sexo")
     private String sexo;
 
-    @Column
+    @Column(name = "fechaNacimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
 
-    @Column
+    @Column(name = "telefono")
     private String telefono;
 
-    @Column
+    @Column(name = "email")
     private String email;
 
     public String getEmail() {
