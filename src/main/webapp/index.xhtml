@@ -7,13 +7,36 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <h:head>
-        <title>VideoClub</title>
-    </h:head>
+<h:head>
+    <title>VideoClub</title>
+</h:head>
 
-    <h:body>
-        <h:form>
-            <p:link value="Crear Cueanta" outcome="usuario"/>
-        </h:form>
-    </h:body>
+<h:body id="principal">
+    <br/>
+    <h:form>
+        <p:messages severity="info,fatal,warn" showSummary="true" showDetail="true">
+            <p:autoUpdate/>
+        </p:messages>
+        <div id="cuadro">
+            <p:fieldset legend="LOGIN">
+                <h:panelGrid columns="3" id="pgDatos">
+                    <p:outputLabel for="txtUser" value="Usuario"/>
+                    <p:inputText id="txtUser" required="true" value="#{indexController.usuario.usuario}"/>
+                    <p:message for="txtUser"/>
+
+                    <p:outputLabel for="txtclave" value="Clave"/>
+                    <p:password id="txtclave" required="true" value="#{indexController.usuario.clave}"
+                                requiredMessage="Campo Requerido"/>
+                    <p:message for="txtclave"/>
+
+                    <p:column/>
+                    <p:commandButton icon="ui-icon-key" value="Conectar" update="pgDatos"
+                                     action="#{indexController.iniciarSesion()}"/>
+                </h:panelGrid>
+                <p:separator/>
+                <p:link value="Crear Cuenta" outcome="usuario"/>
+            </p:fieldset>
+        </div>
+    </h:form>
+</h:body>
 </html>
