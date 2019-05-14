@@ -9,10 +9,6 @@ import java.util.Date;
 public class Persona implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column
     private String dni;
 
     @Column
@@ -31,12 +27,15 @@ public class Persona implements Serializable {
     @Column
     private String telefono;
 
-    public Integer getId() {
-        return id;
+    @Column
+    private String email;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getDni() {

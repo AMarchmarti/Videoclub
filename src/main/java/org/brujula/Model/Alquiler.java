@@ -13,8 +13,8 @@ public class Alquiler implements Serializable {
     private Integer idAlquiler;
 
     @ManyToOne
-    @JoinColumn(name = "id_persona", nullable = false)
-    private Persona idPersona;
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario idUsuario;
 
     @ManyToOne
     @JoinColumn(name = "id_pelicula", nullable = false)
@@ -32,12 +32,12 @@ public class Alquiler implements Serializable {
         this.idAlquiler = idAlquiler;
     }
 
-    public Persona getIdPersona() {
-        return idPersona;
+    public Usuario getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdPersona(Persona idPersona) {
-        this.idPersona = idPersona;
+    public void setIdUsuario(Usuario idPersona) {
+        this.idUsuario = idUsuario;
     }
 
     public Pelicula getIdPelicula() {

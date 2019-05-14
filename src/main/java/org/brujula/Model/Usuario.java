@@ -8,9 +8,11 @@ import java.io.Serializable;
 @Table(name = "usuario")
 public class Usuario implements Serializable {
 
-    @Id
+    @Id @GeneratedValue
+    private Integer id;
+
     @OneToOne
-    @JoinColumn(name = "id_persona", nullable = false)
+    @JoinColumn(name = "dni_persona", nullable = false)
     private Persona idUsuario;
 
     @Column
