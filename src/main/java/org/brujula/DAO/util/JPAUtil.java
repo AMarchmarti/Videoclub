@@ -1,4 +1,4 @@
-package org.brujula.DAO;
+package org.brujula.DAO.util;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

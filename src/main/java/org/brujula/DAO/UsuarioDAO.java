@@ -1,18 +1,15 @@
 package org.brujula.DAO;
 
+import org.brujula.DAO.util.JPAUtil;
+import org.brujula.DAO.util.Utilities;
 import org.brujula.Model.Usuario;
 
-import javax.naming.LimitExceededException;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.print.attribute.IntegerSyntax;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by amarch on 10/05/2019.
  */
-public class UsuarioDAO {
+public class UsuarioDAO implements Utilities<Usuario> {
     EntityManager entity = JPAUtil.getEntityManagerFactory().createEntityManager();
 
     //guardar usuario

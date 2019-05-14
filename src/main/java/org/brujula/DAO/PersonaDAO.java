@@ -1,5 +1,7 @@
 package org.brujula.DAO;
 
+import org.brujula.DAO.util.JPAUtil;
+import org.brujula.DAO.util.Utilities;
 import org.brujula.Model.Persona;
 
 import javax.persistence.EntityManager;
@@ -7,7 +9,7 @@ import javax.persistence.EntityManager;
 /**
  * Created by amarch on 10/05/2019.
  */
-public class PersonaDAO {
+public class PersonaDAO implements Utilities<Persona> {
     EntityManager entity = JPAUtil.getEntityManagerFactory().createEntityManager();
 
     //guardar Persona
@@ -27,7 +29,7 @@ public class PersonaDAO {
     }
 
     //Buscar Persona
-    public Persona buscar(Integer id){
+    public Persona buscar(String id){
         Persona persona = new Persona();
         persona = entity.find(Persona.class, id);
         JPAUtil.shutdown();
