@@ -14,47 +14,65 @@
 <h:body>
     <h:form>
 
+        <p:messages id="messages" >
+            <p:autoUpdate disabled="true"/>
+        </p:messages>
+
         <p:fieldset legend="Datos Personales">
-            <h:panelGrid columns="2">
-                <p:outputLabel value="DNI"/>
-                <p:inputText value="#{usuarioController.persona.dni}"/>
+            <h:panelGrid columns="3" id="pgDatos">
+                <p:outputLabel for="txtDNI" value="DNI"/>
+                <p:inputText id="txtDNI" value="#{usuarioController.persona.dni}" required="true"/>
+                <p:message for="txtDNI"/>
 
-                <p:outputLabel value="Nombre"/>
-                <p:inputText value="#{usuarioController.persona.nombre}"/>
+                <p:outputLabel for="txtNombre" value="Nombre"/>
+                <p:inputText id="txtNombre" value="#{usuarioController.persona.nombre}" required="true"/>
+                <p:message for="txtNombre"/>
 
-                <p:outputLabel value="Apellidos"/>
-                <p:inputText value="#{usuarioController.persona.apellidos}"/>
+                <p:outputLabel for="txtApellidos" value="Apellidos" />
+                <p:inputText id="txtApellidos" value="#{usuarioController.persona.apellidos}" required="true"/>
+                <p:message for="txtApellidos"/>
 
-                <p:outputLabel value="Telefono"/>
-                <p:inputText value="#{usuarioController.persona.telefono}" />
+                <p:outputLabel for="txtTelefono" value="Telefono"/>
+                <p:inputText id="txtTelefono" value="#{usuarioController.persona.telefono}" required="true"/>
+                <p:message for="txtTelefono"/>
 
-                <p:outputLabel value="Sexo"/>
-                <p:selectOneRadio value="#{usuarioController.persona.sexo}">
+                <p:outputLabel for="txtEmail" value="Email"/>
+                <p:inputText id="txtEmail" value="#{usuarioController.persona.email}" required="true"/>
+                <p:message for="txtEmail"/>
+
+                <p:outputLabel value="Sexo" for="rdbSexo"/>
+                <p:selectOneRadio id="rdbSexo" value="#{usuarioController.persona.sexo}" required="true">
                     <f:selectItem itemValue="M" itemLabel="MASCULINO"/>
                     <f:selectItem itemValue="F" itemLabel="FEMENINO"/>
                 </p:selectOneRadio>
+                <p:message for="rdbSexo"/>
 
-                <p:outputLabel value="Fecha de Nacimiento"/>
-                <p:calendar value="#{usuarioController.persona.fechaNacimiento}" locale="es"/>
+                <p:outputLabel for="txtFecha" value="Fec Nacimiento"/>
+                <p:calendar id="txtFecha" value="#{usuarioController.persona.fechaNacimiento}" locale="es" required="true"/>
+                <p:message for="txtFecha"/>
             </h:panelGrid>
         </p:fieldset>
 
         <p:fieldset legend="Datos de la cuenta">
-            <h:panelGrid columns="2">
-                <p:outputLabel value="Usuario"/>
-                <p:inputText value="#{usuarioController.usuario.usuario}"/>
+            <h:panelGrid columns="3" id="pgCuenta">
+                <p:outputLabel for="txtUser" value="Usuario"/>
+                <p:inputText id="txtUser" value="#{usuarioController.usuario.usuario}" required="true" requiredMessage="Campo Requerido"/>
+                <p:message for="txtUser"/>
 
-                <p:outputLabel value="Contraseña"/>
-                <p:password id="con1" value="#{usuarioController.usuario.clave}" match="con2"
-                            feedback="true" promptLabel="necesita una contraseña"/>
+                <p:outputLabel for="con1" value="Contraseña"/>
+                <p:password id="con1" value="#{usuarioController.usuario.clave}" required="true" match="con2"
+                            feedback="true" promptLabel="Ingrese una contraseña" requiredMessage="Campo Requerido"
+                            validatorMessage="Las contraseñas no coinciden" weakLabel="Débil" strongLabel="Fuerte" goodLabel="Bueno"/>
+                <p:message for="con1"/>
 
-                <p:outputLabel  value="Repetir contraseña"/>
-                <p:password id="con2"/>
+                <p:outputLabel for="con2" value="Repetir contraseña"/>
+                <p:password id="con2" required="true" requiredMessage="Campo Requerido"/>
+                <p:message for="con2"/>
 
             </h:panelGrid>
         </p:fieldset>
 
-        <p:commandButton value="Registrar" icon="ui-icon-check"/>
+        <p:commandButton value="Registrar" icon="ui-icon-check" update="pgDatos,pgCuenta"/>
     </h:form>
 </h:body>
 <h:outputScript library="js" name="SpanishLocale.js"/>
