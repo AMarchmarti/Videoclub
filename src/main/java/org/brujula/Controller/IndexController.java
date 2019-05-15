@@ -13,7 +13,7 @@ import javax.inject.Named;
 
 import java.io.Serializable;
 
-@Named
+@ManagedBean
 @ViewScoped
 public class IndexController implements Serializable {
 
