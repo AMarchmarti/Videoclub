@@ -18,8 +18,12 @@ public class PlantillaController implements Serializable {
             Usuario usuario = (Usuario) context.getExternalContext().getSessionMap().get("usuario");
 
             if(usuario == null){
-                context.getExternalContext().redirect("permisos.xhtml");
+                context.getExternalContext().redirect("./../permisos.xhtml");
             }
         }catch (Exception e){}
+    }
+
+    public void cerrarSesion(){
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
 }

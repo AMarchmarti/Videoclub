@@ -33,6 +33,7 @@ create table generos(
 	id_genero int not null auto_increment,
     nombre varchar(50)  not null,
     primary key(id_genero));
+
     
 drop table if exists peliculas;
 create table peliculas(
