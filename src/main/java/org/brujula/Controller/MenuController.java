@@ -57,6 +57,6 @@ public class MenuController implements Serializable {
     }
 
     public String redirigirIndex(){
-        return "index?faces-redirect=true";
+        return "./../index?faces-redirect=true";
     }
 }

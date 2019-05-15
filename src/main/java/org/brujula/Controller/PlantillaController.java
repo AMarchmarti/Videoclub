@@ -4,6 +4,7 @@ import org.brujula.Model.Usuario;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 
@@ -24,6 +25,11 @@ public class PlantillaController implements Serializable {
     }
 
     public void cerrarSesion(){
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        try{
+            ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+            context.invalidateSession();
+            context.redirect("./../index.xhtml");
+        }catch (Exception e){}
+
     }
 }
