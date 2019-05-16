@@ -33,8 +33,15 @@ create table generos(
 	id_genero int not null auto_increment,
     nombre varchar(50)  not null,
     primary key(id_genero));
-
     
+insert into generos values ('1', 'Terror');
+insert into generos values ('2', 'Fantasía');
+insert into generos values ('3', 'Ciencia-Ficción');
+insert into generos values ('4', 'Acción');
+insert into generos values ('5', 'Comedia');
+insert into generos values ('6', 'Romance');
+
+
 drop table if exists peliculas;
 create table peliculas(
 	id_pelicula int not null auto_increment,

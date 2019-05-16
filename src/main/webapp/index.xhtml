@@ -2,41 +2,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
     <title>VideoClub</title>
 </h:head>
 
-<h:body id="principal">
+<h:body id="principal" styleClass="hold-transition login-page">
     <br/>
-    <h:form>
-        <p:messages severity="info,fatal,warn" showSummary="true" showDetail="true">
-            <p:autoUpdate/>
-        </p:messages>
-        <div id="cuadro">
-            <p:fieldset legend="LOGIN">
-                <h:panelGrid columns="3" id="pgDatos">
-                    <p:outputLabel for="txtUser" value="Usuario"/>
-                    <p:inputText id="txtUser" required="true" value="#{indexController.usuario.usuario}"/>
-                    <p:message for="txtUser"/>
+    <p:growl showDetail="true" sticky="true">
+        <p:autoUpdate/>
+    </p:growl>
+    <div class="login-box">
+        <div class="box login-box-body">
 
-                    <p:outputLabel for="txtclave" value="Clave"/>
-                    <p:password id="txtclave" required="true" value="#{indexController.usuario.clave}"
-                                requiredMessage="Campo Requerido"/>
-                    <p:message for="txtclave"/>
+            <h:form>
+                <p class="login-box-msg">Sign in to start your session</p>
+                <div class="form-group has-feedback">
+                    <p:inputText placeholder="Usuario" styleClass="form-control" id="txtUser" required="true"
+                                 value="#{indexController.usuario.usuario}" requiredMessage="Añade un usuario"/>
+                    <i class="fa fa-envelope form-control-feedback"></i>
+                </div>
 
-                    <p:column/>
-                    <p:commandButton icon="ui-icon-key" value="Conectar" update="pgDatos"
-                                     action="#{indexController.iniciarSesion()}"/>
-                </h:panelGrid>
-                <p:separator/>
+                <div class="form-group has-feedback">
+                <p:password placeholder="Contraseña" styleClass="form-control" id="txtclave" required="true" value="#{indexController.usuario.clave}"
+                            requiredMessage="Campo Requerido"/>
+                    <i class="fa fa-lock form-control-feedback" style="font-size: 18px" ></i>
+                </div>
+                <div class="col-xs-12">
+                <p:commandButton styleClass="btn btn-success btn-block"  icon="ui-icon-key" value="Conectar"
+                                 action="#{indexController.iniciarSesion()}" update="@form"/>
+
+                </div>
                 <p:link value="Crear Cuenta" outcome="usuario"/>
-            </p:fieldset>
+
+
+            </h:form>
         </div>
-    </h:form>
+    </div>
 </h:body>
 </html>
