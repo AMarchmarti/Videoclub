@@ -5,8 +5,6 @@ import org.brujula.DAO.PeliculaDAOImpl;
 import org.brujula.DAO.util.GeneroDAO;
 import org.brujula.DAO.util.PeliculaDAO;
 import org.brujula.Model.Genero;
-import org.brujula.Model.Usuario;
-import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuModel;
 

@@ -63,3 +63,5 @@ create table alquileres(
     foreign key(id_pelicula) references peliculas(id_pelicula));
     
     
+
+    

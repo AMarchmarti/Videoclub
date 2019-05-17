@@ -5,12 +5,14 @@ import org.brujula.DAO.util.GeneroDAO;
 import org.brujula.Model.Genero;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
 
-@ManagedBean
+@ManagedBean(name = "generoController")
 @ViewScoped
 public class GeneroController implements Serializable {
 
@@ -24,15 +26,16 @@ public class GeneroController implements Serializable {
     public void init(){
         genero = new Genero();
         generoDAO = new GeneroDAOImpl();
-        listarGenero = generoDAO.findAll();
+        setListarGenero();
+
     }
 
     public List<Genero> getListarGenero() {
         return listarGenero;
     }
 
-    public void setListarGenero(List<Genero> listarGenero) {
-        this.listarGenero = listarGenero;
+    public void setListarGenero() {
+        this.listarGenero = generoDAO.findAll();
     }
 
     public Genero getGenero() {
@@ -45,8 +48,15 @@ public class GeneroController implements Serializable {
 
     public void añadirCategoria(){
         try{
-            generoDAO.registrar(genero);
+            System.out.println(getListarGenero());
+            System.out.println(genero.getNombre());
+            if (!getListarGenero().contains(genero.getNombre())){
+                generoDAO.registrar(genero);}
+            else{
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso","Ese genero ya esta en la lista!"));
+            }
         }catch (Exception e){}
     }
+
 
 }
