@@ -49,6 +49,7 @@ create table peliculas(
     resumen varchar(255),
     estado tinyint default 1,
     genero int not null,
+    imagen blob,
     primary key(id_pelicula),
     foreign key(genero) references generos(id_genero));
     
