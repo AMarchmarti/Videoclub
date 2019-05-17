@@ -10,6 +10,7 @@ public class Alquiler implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_alquiler")
     private Integer idAlquiler;
 
     @ManyToOne
