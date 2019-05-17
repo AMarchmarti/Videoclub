@@ -18,7 +18,6 @@ public class PersonaDAOImpl implements PersonaDAO {
         entity.getTransaction().begin();
         entity.persist(persona);
         entity.getTransaction().commit();
-        JPAUtil.shutdown();
     }
 
     //editar Persona
@@ -27,7 +26,6 @@ public class PersonaDAOImpl implements PersonaDAO {
         entity.getTransaction().begin();
         entity.merge(persona);
         entity.getTransaction().commit();
-        JPAUtil.shutdown();
     }
 
     //Buscar Persona
@@ -35,7 +33,6 @@ public class PersonaDAOImpl implements PersonaDAO {
     public Persona buscar(String id){
         Persona persona = new Persona();
         persona = entity.find(Persona.class, id);
-        JPAUtil.shutdown();
         return persona;
     }
 }

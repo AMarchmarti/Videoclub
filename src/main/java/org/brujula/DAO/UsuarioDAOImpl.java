@@ -20,7 +20,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         entity.getTransaction().begin();
         entity.persist(usuario);
         entity.getTransaction().commit();
-        JPAUtil.shutdown();
     }
 
     //editar usuario
@@ -29,7 +28,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         entity.getTransaction().begin();
         entity.merge(usuario);
         entity.getTransaction().commit();
-        JPAUtil.shutdown();
     }
 
     //Buscar usuario
@@ -37,7 +35,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     public Usuario buscar(Integer id){
         Usuario user = new Usuario();
         user = entity.find(Usuario.class, id);
-        JPAUtil.shutdown();
         return user;
     }
 

@@ -26,7 +26,7 @@ public class PeliculaDAOImpl implements PeliculaDAO {
         entity.getTransaction().begin();
         entity.persist(type);
         entity.getTransaction().commit();
-        JPAUtil.shutdown();
+
     }
 
     @Override
@@ -34,6 +34,6 @@ public class PeliculaDAOImpl implements PeliculaDAO {
         entity.getTransaction().begin();
         entity.merge(type);
         entity.getTransaction().commit();
-        JPAUtil.shutdown();
+
     }
 }

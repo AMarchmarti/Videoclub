@@ -17,7 +17,6 @@ public class GeneroDAOImpl implements GeneroDAO {
         entity.getTransaction().begin();
         Query query = entity.createQuery("select g.nombre from Genero g");
         entity.getTransaction().commit();
-        JPAUtil.shutdown();
         return query.getResultList();
     }
 
@@ -26,7 +25,7 @@ public class GeneroDAOImpl implements GeneroDAO {
         entity.getTransaction().begin();
         entity.persist(type);
         entity.getTransaction().commit();
-        JPAUtil.shutdown();
+
     }
 
     @Override
@@ -34,6 +33,6 @@ public class GeneroDAOImpl implements GeneroDAO {
         entity.getTransaction().begin();
         entity.merge(type);
         entity.getTransaction().commit();
-        JPAUtil.shutdown();
+
     }
 }
