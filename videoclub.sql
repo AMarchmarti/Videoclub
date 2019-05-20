@@ -30,16 +30,15 @@ CREATE TABLE usuario(
     
 drop table if exists generos;
 create table generos(
-	id_genero int not null auto_increment,
     nombre varchar(50)  not null,
-    primary key(id_genero));
+    primary key(nombre));
     
-insert into generos values ('1', 'Terror');
-insert into generos values ('2', 'Fantasía');
-insert into generos values ('3', 'Ciencia-Ficción');
-insert into generos values ('4', 'Acción');
-insert into generos values ('5', 'Comedia');
-insert into generos values ('6', 'Romance');
+insert into generos values ('Terror');
+insert into generos values ('Fantasía');
+insert into generos values ('Ciencia-Ficción');
+insert into generos values ('Acción');
+insert into generos values ('Comedia');
+insert into generos values ('Romance');
 
 
 drop table if exists peliculas;
@@ -48,10 +47,10 @@ create table peliculas(
     titulo varchar(100) not null,
     resumen varchar(255),
     estado tinyint default 1,
-    genero int not null,
-    imagen blob,
+    genero varchar(50) not null,
+    imagen longblob,
     primary key(id_pelicula),
-    foreign key(genero) references generos(id_genero));
+    foreign key(genero) references generos(nombre));
     
 drop table if exists alquileres;
 create table alquileres(

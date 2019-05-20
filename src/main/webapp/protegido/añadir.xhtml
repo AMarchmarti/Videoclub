@@ -12,31 +12,60 @@
         <ui:define name="content">
             <h2>Nueva Pelicula</h2>
 
-            <p:growl showDetail="true" sticky="true">
-                <p:autoUpdate/>
-            </p:growl>
-
             <p:dialog header="Añadir Genero" widgetVar="dlg" id="dlgGenero">
                 <h:form>
-                    <p:outputLabel value="Nombre" />
-                    <p:inputText value="#{generoController.genero.nombre}" />
+                    <p:outputLabel value="Nombre"/>
+                    <p:inputText value="#{generoController.genero.nombre}"/>
                     <p:commandButton styleClass="btn btn-success" value="Añadir" oncomplete="PF('dlg').hide()"
-                                     actionListener="#{generoController.añadirCategoria}" update="formGenero:multListBox"/>
-                    <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('dlg').hide()" styleClass="btn btn-danger"/>
+                                     actionListener="#{generoController.añadirCategoria}"
+                                     update="formGenero:advanced"/>
+                    <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('dlg').hide()"
+                                     styleClass="btn btn-danger"/>
                 </h:form>
             </p:dialog>
 
-            <h:form id="formGenero">
-                <p:outputLabel for="multListBox" />
-                <p:multiSelectListbox id="multListBox" header="Generos" value="#{generoController.genero.id}" showHeaders="true">
-                    <f:selectItems value="#{generoController.listarGenero}"/>
-                </p:multiSelectListbox>
-                <p:commandButton styleClass="btn btn-primary" value="+Añadir Genero"  oncomplete="PF('dlg').show()" update="dlgGenero"/>
+            <h:form id="formGenero" enctype="multipar/form-data">
+                <div class="form-group">
+                    <p:outputLabel for="advanced" value="Generos"/>
+                    <p:selectOneListbox id="advanced"  value="#{peliculaController.genero.nombre}"
+                                        filter="true" filterMatchMode="contains">
+                        <f:selectItems value="#{peliculaController.getListarGenero()}" />
+                    </p:selectOneListbox>
+                    <p:commandButton styleClass="btn btn-primary" value="+Añadir Genero" oncomplete="PF('dlg').show()"
+                                     update="dlgGenero"/>
 
+                    <p:growl showDetail="true" sticky="true">
+                        <p:autoUpdate/>
+                    </p:growl>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <p:outputLabel value="Título " />
+                    <p:inputText value="#{peliculaController.pelicula.titulo}" requiredMessage="Agregue un Título" required="true"/>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <p:outputLabel value="Resumen " />
+                    <p:inputTextarea rows="5" cols="30" value="#{peliculaController.pelicula.resumen}" requiredMessage="Agregue un Resumen"
+                                 placeholder="Añade una breve sinopsis de la película" required="true" autoResize="true"/>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <p:outputLabel value="Añade una imagen para la pelicula"/>
+                    <p:fileUpload fileUploadListener="#{peliculaController.subirImagen}" cancelLabel="Cancelar"
+                                  uploadLabel="Subir Imagen" mode="single" skinSimple="false" label="Elegir"
+                                  update="graImaPro" sizeLimit="512000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                    <p:graphicImage id="graImaPro" value="#{peliculaController.imagenPelicula}" width="150" height="120"/>
+                </div>
+
+                <p:commandButton value="Registrar pelicula" actionListener="#{peliculaController.registrarPelicula}" styleClass="btn btn-success" update="@form"/>
+                <p:commandButton value="Reiniciar formulario" update="@form" styleClass="btn btn-danger"/>
             </h:form>
         </ui:define>
 
 
     </ui:composition>
+
 </h:body>
+
 </html>

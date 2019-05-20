@@ -23,7 +23,7 @@ public class GeneroController implements Serializable {
     private Genero genero;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         genero = new Genero();
         generoDAO = new GeneroDAOImpl();
         setListarGenero();
@@ -46,16 +46,16 @@ public class GeneroController implements Serializable {
         this.genero = genero;
     }
 
-    public void añadirCategoria(){
-        try{
-            System.out.println(getListarGenero());
-            System.out.println(genero.getNombre());
-            if (!getListarGenero().contains(genero.getNombre())){
-                generoDAO.registrar(genero);}
-            else{
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Aviso","Ese genero ya esta en la lista!"));
+    public void añadirCategoria() {
+        try {
+            if (!getListarGenero().contains(genero.getNombre())) {
+                generoDAO.registrar(genero);
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Aviso", "Ese genero ya esta en la lista!"));
             }
-        }catch (Exception e){}
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!"));
+        }
     }
 
 

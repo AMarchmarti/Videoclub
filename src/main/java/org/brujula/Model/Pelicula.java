@@ -1,7 +1,7 @@
 package org.brujula.Model;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.io.*;
 
 @Entity
 @Table(name = "peliculas")
@@ -25,14 +25,16 @@ public class Pelicula implements Serializable{
     @JoinColumn(name = "genero")
     private Genero genero;
 
-    @Column
-    private String imagen;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(columnDefinition="longblob")
+    private byte[] imagen;
 
-    public String getImagen() {
+    public byte[] getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(byte[] imagen){
         this.imagen = imagen;
     }
 
