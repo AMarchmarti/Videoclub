@@ -9,7 +9,7 @@
 
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
+    <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css"/>
     <h:outputStylesheet library="css" name="style.css"/>
     <title>VideoClub</title>
     <f:event type="preRenderView" listener="#{plantillaController.verificarSesion()}"/>
@@ -19,21 +19,26 @@
 
     <div id="top">
         <ui:insert name="top">
-                <h:form>
-                    <p:menubar>
-                        <p:submenu label="Pelicula" >
-                            <p:menuitem value="Añadir Pelicula" action="#{menuController.redirigirAñadir()}"
-                                        icon="pi pi-briefcase"/>
-                        </p:submenu>
+            <h:form>
+                <p:menubar>
+                    <p:menuitem value="Peliculas" action="#{menuController.redirigirPrincipal}" icon="ui-icon-camera"/>
 
-                        <f:facet name="options">
-                            <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
-                            <p:commandButton  value="Logout"
-                                             action="#{plantillaController.cerrarSesion}" icon="ui-icon-home"/>
-                        </f:facet>
-                    </p:menubar>
-                </h:form>
-            </ui:insert>
+                    <p:menuitem value="Añadir Pelicula" action="#{menuController.redirigirAñadir()}"
+                                icon="ui-icon-save"/>
+
+                    <p:menuitem value="Usuarios" disabled="#{menuController.establecerpermisos()}"/>
+
+
+
+
+                    <f:facet name="options">
+                        <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
+                        <p:commandButton value="Logout"
+                                         action="#{plantillaController.cerrarSesion}" icon="ui-icon-sign-out"/>
+                    </f:facet>
+                </p:menubar>
+            </h:form>
+        </ui:insert>
     </div>
 
     <div id="content" class="center_content">

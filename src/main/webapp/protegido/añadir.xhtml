@@ -23,7 +23,7 @@
                                      styleClass="btn btn-danger"/>
                 </h:form>
             </p:dialog>
-
+            <div class="container">
             <h:form id="formGenero" enctype="multipar/form-data">
                 <div class="form-group">
                     <p:outputLabel for="advanced" value="Generos"/>
@@ -52,15 +52,16 @@
 
                 <div class="form-group has-feedback">
                     <p:outputLabel value="Añade una imagen para la pelicula"/>
-                    <p:fileUpload fileUploadListener="#{peliculaController.subirImagen}" cancelLabel="Cancelar"
-                                  uploadLabel="Subir Imagen" mode="single" skinSimple="false" label="Elegir"
-                                  update="graImaPro" sizeLimit="512000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
-                    <p:graphicImage id="graImaPro" value="#{peliculaController.imagenPelicula}" width="150" height="120"/>
+                    <p:inputText value="#{peliculaController.pelicula.imagen}" required="true" requiredMessage="Agregue una imagen para la pelicula"
+                                 placeholder="Introduzca el url de la imagen"/>
                 </div>
 
-                <p:commandButton value="Registrar pelicula" actionListener="#{peliculaController.registrarPelicula}" styleClass="btn btn-success" update="@form"/>
-                <p:commandButton value="Reiniciar formulario" update="@form" styleClass="btn btn-danger"/>
+                <p:commandButton value="Registrar pelicula" actionListener="#{peliculaController.registrarPelicula}" styleClass="btn btn-success" update="formGenero"/>
+                <p:commandButton value="Riniciar Formulario" update="formGenero" process="@this" style="margin-right:20px;" >
+                    <p:resetInput target="formGenero" />
+                </p:commandButton>
             </h:form>
+            </div>
         </ui:define>
 
 

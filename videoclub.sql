@@ -48,7 +48,7 @@ create table peliculas(
     resumen varchar(255),
     estado tinyint default 1,
     genero varchar(50) not null,
-    imagen longblob,
+    imagen varchar(255) not null,
     primary key(id_pelicula),
     foreign key(genero) references generos(nombre));
     

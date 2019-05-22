@@ -1,20 +1,22 @@
 package org.brujula.Controller;
 
 import org.brujula.DAO.GeneroDAOImpl;
-import org.brujula.DAO.ImagenTemporal;
 import org.brujula.DAO.PeliculaDAOImpl;
 import org.brujula.DAO.util.GeneroDAO;
 import org.brujula.DAO.util.PeliculaDAO;
 import org.brujula.Model.Genero;
 import org.brujula.Model.Pelicula;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -31,9 +33,9 @@ public class PeliculaController implements Serializable {
 
     private Genero genero;
 
-    private String imagenPelicula;
-
     private List<Genero> listarGenero;
+
+    private List<Pelicula> listaPeliculas;
 
     @PostConstruct
     public void init(){
@@ -42,6 +44,7 @@ public class PeliculaController implements Serializable {
         pelicula = new Pelicula();
         genero = new Genero();
         listarGenero = generoDAO.findAll();
+        listaPeliculas = peliculaDAO.recuperarPeliculas();
     }
 
     public List<Genero> getListarGenero() {
@@ -68,22 +71,12 @@ public class PeliculaController implements Serializable {
         this.pelicula = pelicula;
     }
 
-    public String getImagenPelicula() {
-        return imagenPelicula;
+    public List<Pelicula> getListaPeliculas() {
+        return listaPeliculas;
     }
 
-    public void setImagenPelicula(String imagenPelicula) {
-        this.imagenPelicula = imagenPelicula;
-    }
-
-    public void subirImagen(FileUploadEvent event) {
-        try {
-            pelicula.setImagen(event.getFile().getContents());
-            imagenPelicula = ImagenTemporal.guardarBlobEnFicheroTemporal(pelicula.getImagen(), event.getFile().getFileName());
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Imagen subida","Imagen añadida"));
-        } catch (Exception e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!"));
-        }
+    public void setListaPeliculas(List<Pelicula> listaPeliculas) {
+        this.listaPeliculas = listaPeliculas;
     }
 
     public void registrarPelicula() {
@@ -97,4 +90,10 @@ public class PeliculaController implements Serializable {
 
     }
 
-}
+    public List<Pelicula> mostrarPeliculas(){
+        if (getListaPeliculas().isEmpty()){
+            return null;
+        }
+        return getListaPeliculas();
+
+}}

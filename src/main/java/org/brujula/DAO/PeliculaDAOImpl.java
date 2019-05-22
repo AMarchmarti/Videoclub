@@ -5,9 +5,11 @@ import org.brujula.DAO.util.PeliculaDAO;
 import org.brujula.Model.Pelicula;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.io.Serializable;
 import java.util.List;
 
-public class PeliculaDAOImpl implements PeliculaDAO {
+public class PeliculaDAOImpl implements PeliculaDAO, Serializable {
 
     EntityManager entity = JPAUtil.getEntityManagerFactory().createEntityManager();
 
@@ -17,8 +19,11 @@ public class PeliculaDAOImpl implements PeliculaDAO {
     }
 
     @Override
-    public List<Pelicula> findAll() {
-        return null;
+    public List<Pelicula> recuperarPeliculas() {
+        entity.getTransaction().begin();
+        Query query = entity.createQuery("select p from Pelicula p");
+        entity.getTransaction().commit();
+        return query.getResultList();
     }
 
     @Override
@@ -36,4 +41,6 @@ public class PeliculaDAOImpl implements PeliculaDAO {
         entity.getTransaction().commit();
 
     }
+
+
 }

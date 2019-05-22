@@ -8,5 +8,7 @@ public interface PeliculaDAO extends BaseDAO<Pelicula> {
 
     Pelicula buscar(Integer id);
 
-    List<Pelicula> findAll();
+    List<Pelicula> recuperarPeliculas();
+
+
 }

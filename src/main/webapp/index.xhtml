@@ -9,6 +9,8 @@
 
 <h:head>
     <title>VideoClub</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+
 </h:head>
 
 <h:body id="principal" styleClass="hold-transition login-page">
@@ -24,7 +26,7 @@
                 <div class="form-group has-feedback">
                     <p:inputText placeholder="Usuario" styleClass="form-control" id="txtUser" required="true"
                                  value="#{indexController.usuario.usuario}" requiredMessage="Añade un usuario"/>
-                    <i class="fa fa-envelope form-control-feedback"></i>
+                    <i class="fa fa-user form-control-feedback"></i>
                 </div>
 
                 <div class="form-group has-feedback">
@@ -33,9 +35,8 @@
                     <i class="fa fa-lock form-control-feedback" style="font-size: 18px" ></i>
                 </div>
                 <div class="col-xs-12">
-                <p:commandButton styleClass="btn btn-success btn-block"  icon="ui-icon-key" value="Conectar"
+                <p:commandButton styleClass="btn btn-success btn-block"  icon="ui-icon-sign-in" value="Conectar"
                                  action="#{indexController.iniciarSesion()}" update="@form"/>
-
                 </div>
                 <p:link value="Crear Cuenta" outcome="usuario"/>
 
@@ -43,5 +44,7 @@
             </h:form>
         </div>
     </div>
+    <h:outputScript library="js" name="IconJavaScript.js"/>
+    <h:outputScript library="js" name="SpanishLocale.js"/>
 </h:body>
 </html>

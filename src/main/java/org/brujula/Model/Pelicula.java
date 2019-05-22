@@ -2,6 +2,7 @@ package org.brujula.Model;
 
 import javax.persistence.*;
 import java.io.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "peliculas")
@@ -25,16 +26,15 @@ public class Pelicula implements Serializable{
     @JoinColumn(name = "genero")
     private Genero genero;
 
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Column(columnDefinition="longblob")
-    private byte[] imagen;
+   
+    @Column
+    private String imagen;
 
-    public byte[] getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(byte[] imagen){
+    public void setImagen(String imagen){
         this.imagen = imagen;
     }
 
@@ -76,5 +76,18 @@ public class Pelicula implements Serializable{
 
     public void setGenero(Genero genero) {
         this.genero = genero;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Pelicula)) return false;
+        Pelicula pelicula = (Pelicula) o;
+        return Objects.equals(idPelicula, pelicula.idPelicula);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idPelicula);
     }
 }
