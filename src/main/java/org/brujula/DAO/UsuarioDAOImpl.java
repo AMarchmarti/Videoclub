@@ -59,4 +59,11 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         }
         return usuario;
     }
+
+
+    @Override
+    public List<Usuario> mostrarUsuarios(){
+        System.out.println("hola");
+        return entity.createQuery("select u from Usuario u").getResultList();
+    }
 }

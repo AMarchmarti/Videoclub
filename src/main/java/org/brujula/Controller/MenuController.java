@@ -1,41 +1,41 @@
 package org.brujula.Controller;
 
-import org.brujula.DAO.GeneroDAOImpl;
-import org.brujula.DAO.PeliculaDAOImpl;
-import org.brujula.DAO.util.GeneroDAO;
-import org.brujula.DAO.util.PeliculaDAO;
-import org.brujula.Model.Genero;
+
+import org.brujula.DAO.MenuDAOImpl;
+import org.brujula.DAO.util.MenuDAO;
+
+import org.brujula.Model.Menu;
 import org.brujula.Model.Usuario;
+import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuModel;
 
+
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import java.io.Serializable;
 import java.util.List;
+
+
 
 @ManagedBean
 @SessionScoped //Despues hay que cambiar a SEssionScoped para guardar el tipo de usuario con el que trabajamos
 public class MenuController implements Serializable {
 
-    private GeneroDAO generoDAO;
 
-    private PeliculaDAO peliculaDAO;
-
-    private List<Genero> lista;
+    private MenuDAO menuDAO = new MenuDAOImpl();
 
     private MenuModel model;
 
     @PostConstruct
     public void init(){
-        generoDAO = new GeneroDAOImpl();
-        peliculaDAO = new PeliculaDAOImpl();
         model = new DefaultMenuModel();
-        //Si queremos submenus hay que agregarlos aqui
-
+        this.visualizarMenu();
     }
 
     public MenuModel getModel() {
@@ -50,10 +50,6 @@ public class MenuController implements Serializable {
         return "/protegido/añadir?faces-redirect=true";
     }
 
-    public String redirigirIndex(){
-        return "./../index.xhtml";
-    }
-
     public String redirigirPrincipal(){
         return "/protegido/principal?faces-redirect=true";}
 
@@ -64,16 +60,29 @@ public class MenuController implements Serializable {
 
     }
 
-    public Boolean establecerpermisos(){
+    public String redirigirUsuario(){
+        return "/protegido/administrador/usuarios?faces-redirect=true";}
+
+
+    public void visualizarMenu(){
+
         Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        System.out.println(menuDAO.menuAdmin());
+        System.out.println("------------------------------------");
+        System.out.println(menuDAO.menuUsuario());
+        if(us.getTipo().equals("A")){
+            for (Menu menu : menuDAO.menuAdmin()) {
+                DefaultMenuItem item = new DefaultMenuItem(menu.getNombre());
 
-        if (us.getTipo().equals("A")){
-            return false;
-        }
-        return true;
+                model.addElement(item);}
 
+        }else
+            for (Menu menu : menuDAO.menuUsuario()){
+                DefaultMenuItem item = new DefaultMenuItem(menu.getNombre());
+
+                model.addElement(item);}
+            }
 
     }
 
 
-}

@@ -31,8 +31,7 @@ public class PersonaDAOImpl implements PersonaDAO {
     //Buscar Persona
     @Override
     public Persona buscar(String id){
-        Persona persona = new Persona();
-        persona = entity.find(Persona.class, id);
-        return persona;
+        return entity.find(Persona.class, id);
+
     }
 }

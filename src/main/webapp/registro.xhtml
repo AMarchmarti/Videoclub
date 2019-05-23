@@ -21,34 +21,36 @@
         <p:fieldset legend="Datos Personales">
             <h:panelGrid columns="3" id="pgDatos">
                 <p:outputLabel for="txtDNI" value="DNI"/>
-                <p:inputText id="txtDNI" value="#{usuarioController.persona.dni}" required="true"/>
+                <p:inputText id="txtDNI" value="#{registerController.persona.dni}" required="true" >
+                        <f:validateRegex pattern="^[0-9]{8}[^IÑOU]"/>
+                </p:inputText>
                 <p:message for="txtDNI"/>
 
                 <p:outputLabel for="txtNombre" value="Nombre"/>
-                <p:inputText id="txtNombre" value="#{usuarioController.persona.nombre}" required="true"/>
+                <p:inputText id="txtNombre" value="#{registerController.persona.nombre}" required="true"/>
                 <p:message for="txtNombre"/>
 
                 <p:outputLabel for="txtApellidos" value="Apellidos" />
-                <p:inputText id="txtApellidos" value="#{usuarioController.persona.apellidos}" required="true"/>
+                <p:inputText id="txtApellidos" value="#{registerController.persona.apellidos}" required="true"/>
                 <p:message for="txtApellidos"/>
 
                 <p:outputLabel for="txtTelefono" value="Telefono"/>
-                <p:inputText id="txtTelefono" value="#{usuarioController.persona.telefono}" required="true"/>
+                <p:inputText id="txtTelefono" value="#{registerController.persona.telefono}" required="true"/>
                 <p:message for="txtTelefono"/>
 
                 <p:outputLabel for="txtEmail" value="Email"/>
-                <p:inputText id="txtEmail" value="#{usuarioController.persona.email}" required="true"/>
+                <p:inputText id="txtEmail" value="#{registerController.persona.email}" required="true"/>
                 <p:message for="txtEmail"/>
 
                 <p:outputLabel value="Sexo" for="rdbSexo"/>
-                <p:selectOneRadio id="rdbSexo" value="#{usuarioController.persona.sexo}" required="true">
+                <p:selectOneRadio id="rdbSexo" value="#{registerController.persona.sexo}" required="true">
                     <f:selectItem itemValue="M" itemLabel="MASCULINO"/>
                     <f:selectItem itemValue="F" itemLabel="FEMENINO"/>
                 </p:selectOneRadio>
                 <p:message for="rdbSexo"/>
 
                 <p:outputLabel for="txtFecha" value="Fec Nacimiento"/>
-                <p:calendar id="txtFecha" value="#{usuarioController.persona.fechaNacimiento}" locale="es" required="true"/>
+                <p:calendar id="txtFecha" value="#{registerController.persona.fechaNacimiento}" locale="es" required="true"/>
                 <p:message for="txtFecha"/>
             </h:panelGrid>
         </p:fieldset>
@@ -57,20 +59,21 @@
             <h:panelGrid columns="3" id="pgCuenta">
 
                 <p:outputLabel for="cboTipo" value="Tipo de Cuenta" />
-                <p:selectOneMenu id="cboTipo" value="#{usuarioController.usuario.tipo}" required="true">
+                <p:selectOneMenu id="cboTipo" value="#{registerController.usuario.tipo}" required="true">
                     <f:selectItem itemValue="A" itemLabel="Administrador"/>
                     <f:selectItem itemValue="O" itemLabel="Operario"/>
                 </p:selectOneMenu>
                 <p:message for="cboTipo"/>
 
                 <p:outputLabel for="txtUser" value="Usuario"/>
-                <p:inputText id="txtUser" value="#{usuarioController.usuario.usuario}" required="true" requiredMessage="Campo Requerido"/>
+                <p:inputText id="txtUser" value="#{registerController.usuario.usuario}" required="true" requiredMessage="Campo Requerido"/>
                 <p:message for="txtUser"/>
 
                 <p:outputLabel for="con1" value="Contraseña"/>
-                <p:password id="con1" value="#{usuarioController.usuario.clave}" required="true" match="con2"
+                <p:password id="con1" value="#{registerController.usuario.clave}" required="true" match="con2"
                             feedback="true" promptLabel="Ingrese una contraseña" requiredMessage="Campo Requerido"
-                            validatorMessage="Las contraseñas no coinciden" weakLabel="Débil" strongLabel="Fuerte" goodLabel="Bueno"/>
+                            validatorMessage="Las contraseñas no coinciden" weakLabel="Débil" strongLabel="Fuerte"
+                            goodLabel="Bueno"/>
                 <p:message for="con1"/>
 
                 <p:outputLabel for="con2" value="Repetir contraseña"/>
@@ -80,7 +83,8 @@
             </h:panelGrid>
         </p:fieldset>
 
-        <p:commandButton value="Registrar" icon="ui-icon-check" update="pgDatos,pgCuenta,messages" actionListener="#{usuarioController.registrar()}"/>
+        <p:commandButton value="Registrar" icon="ui-icon-check" update="pgDatos,pgCuenta,messages" actionListener="#{registerController.registrar()}"/>
+        <p:button value="Volver"  outcome="/index?faces-redirect=true"/>
     </h:form>
 </h:body>
 <h:outputScript library="js" name="SpanishLocale.js"/>

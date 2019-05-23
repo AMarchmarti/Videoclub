@@ -1,4 +1,4 @@
-package org.brujula.Controller;
+package org.brujula.Controller.Sesiones;
 
 import org.brujula.Model.Usuario;
 
@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @ManagedBean
 @ViewScoped
-public class PlantillaController implements Serializable {
+public class SessionController implements Serializable {
 
     public void verificarSesion(){
         try{
@@ -25,11 +25,17 @@ public class PlantillaController implements Serializable {
     }
 
     public void cerrarSesion(){
-        try{
-            ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-            context.invalidateSession();
-            context.redirect("./../index.xhtml");
-        }catch (Exception e){}
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    }
+
+    public Boolean establecerpermisos(){
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+
+        if (us.getTipo().equals("A")){
+            return false;
+        }
+        return true;
+
 
     }
 }

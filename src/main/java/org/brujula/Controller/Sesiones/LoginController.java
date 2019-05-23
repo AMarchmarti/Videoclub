@@ -1,4 +1,4 @@
-package org.brujula.Controller;
+package org.brujula.Controller.Sesiones;
 
 import org.brujula.DAO.UsuarioDAOImpl;
 import org.brujula.DAO.util.UsuarioDAO;
@@ -16,7 +16,7 @@ import java.io.Serializable;
 
 @ManagedBean
 @ViewScoped
-public class IndexController implements Serializable {
+public class LoginController implements Serializable {
 
     private UsuarioDAO usuarioDAO;
 

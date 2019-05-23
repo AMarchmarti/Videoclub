@@ -62,6 +62,20 @@ create table alquileres(
     foreign key(id_usuario) references usuario(id),
     foreign key(id_pelicula) references peliculas(id_pelicula));
     
+drop table if exists menu;
+create table menu (
+	codigo tinyint not null auto_increment,
+    nombre varchar(50) not null,
+    tipo enum('S','I') not null,
+    codigo_submenu tinyint,
+    tipo_usuario enum('A', 'O') not null,
+    estado bit(1) not null,
+    primary key(codigo),
+    foreign key (codigo_submenu) references menu(codigo));
     
-
+insert into menu (nombre, tipo,tipo_usuario,estado) values ('Peliculas', 'I','O', 1);
+insert into menu (nombre, tipo,tipo_usuario,estado) values ('Añadir', 'I','O', 1);
+insert into menu (nombre, tipo,tipo_usuario,estado) values ('Mis peliculas', 'I','O', 1);
+insert into menu (nombre, tipo,tipo_usuario,estado) values ('Usuarios', 'I','A', 1);
+    
     

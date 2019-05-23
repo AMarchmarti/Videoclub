@@ -6,17 +6,12 @@ import org.brujula.DAO.util.GeneroDAO;
 import org.brujula.DAO.util.PeliculaDAO;
 import org.brujula.Model.Genero;
 import org.brujula.Model.Pelicula;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.faces.context.FacesContext;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.List;
 

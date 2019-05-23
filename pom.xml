@@ -35,6 +35,13 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>javax</groupId>
+      <artifactId>javaee-web-api</artifactId>
+      <version>7.0</version>
+      <scope>provided</scope>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
     <dependency>
       <groupId>mysql</groupId>
@@ -77,12 +84,6 @@
       <artifactId>hibernate-core</artifactId>
       <version>5.4.2.Final</version>
     </dependency>
-    <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-web-api</artifactId>
-      <version>7.0</version>
-      <scope>provided</scope>
-    </dependency>
 
     <dependency>
       <groupId>org.webjars</groupId>
@@ -95,11 +96,11 @@
       <artifactId>admin-theme</artifactId>
       <version>1.0.0-RC21</version>
     </dependency>
-      <dependency>
-          <groupId>javax</groupId>
-          <artifactId>javaee-web-api</artifactId>
-          <version>7.0</version>
-      </dependency>
+    <dependency>
+      <groupId>javax.enterprise</groupId>
+      <artifactId>cdi-api</artifactId>
+      <version>1.2</version>
+    </dependency>
 
     <dependency>
       <groupId>commons-fileupload</groupId>
