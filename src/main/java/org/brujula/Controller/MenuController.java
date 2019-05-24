@@ -60,10 +60,10 @@ public class MenuController implements Serializable {
             for (Menu menu : menuDAO.menuAdmin()) {
                 DefaultMenuItem item = new DefaultMenuItem(menu.getNombre());
                 if (menu.getUrl().equals("usuarios.xhtml")){
-                    item.setUrl("administrador/"+ menu.getUrl());
-                    item.setUrl(menu.getUrl());}
-                else{item.setUrl(menu.getUrl());}
-                model.addElement(item);}
+                    item.setUrl("/videoclub_toni/faces/protegido/administrador/"+ menu.getUrl());}
+
+                model.addElement(item);
+                item.setUrl("/videoclub_toni/faces/protegido/" + menu.getUrl());}
 
         }else
             for (Menu menu : menuDAO.menuUsuario()){

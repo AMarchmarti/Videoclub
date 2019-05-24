@@ -77,7 +77,7 @@ public class UsuariosController implements Serializable {
     public void eliminarUsuario(Usuario usuario){
         try {
             usuarioDAO.eliminar(usuario.getId());
-            personaDAO.eliminar(usuario.getIdUsuario().getDni());
+//            personaDAO.eliminar(usuario.getIdUsuario().getDni());
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Aviso","El usuario ha sio eliminado"));
         }catch (Exception e){

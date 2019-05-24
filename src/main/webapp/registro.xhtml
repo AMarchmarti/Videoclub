@@ -9,39 +9,50 @@
 
 <h:head>
     <title>Usuarios</title>
+    <h:outputStylesheet library="bootstrap-4.3.1-dist" name="css/bootstrap.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="style.css"/>
 
 </h:head>
 <h:body>
-    <h:form>
+    <div class="container">
+    <h:form styleClass="text-center border border-light p-5" id="registro" >
 
-        <p:messages id="messages" severity="info, fatal" showDetail="true">
-            <p:autoUpdate disabled="true"/>
-        </p:messages>
+<!--        <p:growl id="messages" showDetail="true">-->
+<!--            <p:autoUpdate disabled="true"/>-->
+<!--        </p:message>-->
 
         <p:fieldset legend="Datos Personales">
-            <h:panelGrid columns="3" id="pgDatos">
-                <p:outputLabel for="txtDNI" value="DNI"/>
-                <p:inputText id="txtDNI" value="#{registerController.persona.dni}" required="true" >
+            <div class="form-row mb-4">
+                <div class="col">
+                <p:inputText id="txtDNI" value="#{registerController.persona.dni}" required="true" placeholder="DNI"
+                             requiredMessage="Se requiere valor" styleClass="form-control">
                         <f:validateRegex pattern="^[0-9]{8}[^IÑOU]"/>
                 </p:inputText>
-                <p:message for="txtDNI"/>
+                    <p:message for="txtDNI"/>
+            </div>
+                <div class="col">
+                <p:inputText id="txtNombre" value="#{registerController.persona.nombre}" required="true"
+                             requiredMessage="Se requiere valor" placeholder="Nombre"  styleClass="form-control"/>
+                    <p:message for="txtNombre"/>
+                </div>
 
-                <p:outputLabel for="txtNombre" value="Nombre"/>
-                <p:inputText id="txtNombre" value="#{registerController.persona.nombre}" required="true"/>
-                <p:message for="txtNombre"/>
+                <div class="col">
+                <p:inputText id="txtApellidos" value="#{registerController.persona.apellidos}" required="true"
+                             requiredMessage="Se requiere valor" placeholder="Telefono" styleClass="form-control"/>
+                    <p:message for="txtApellidos"/>
+                </div>
 
-                <p:outputLabel for="txtApellidos" value="Apellidos" />
-                <p:inputText id="txtApellidos" value="#{registerController.persona.apellidos}" required="true"/>
-                <p:message for="txtApellidos"/>
-
-                <p:outputLabel for="txtTelefono" value="Telefono"/>
-                <p:inputText id="txtTelefono" value="#{registerController.persona.telefono}" required="true"/>
+            <div class="col">
+                <p:inputText id="txtTelefono" value="#{registerController.persona.telefono}" required="true"
+                             placeholder="Apellidos" styleClass="form-control" requiredMessage="Se requiere valor"/>
                 <p:message for="txtTelefono"/>
+            </div>
+            </div>
 
-                <p:outputLabel for="txtEmail" value="Email"/>
-                <p:inputText id="txtEmail" value="#{registerController.persona.email}" required="true"/>
+            <div class="col">
+                <p:inputText id="txtEmail" styleClass="form-control mb-4" placeholder="E-mail" value="#{registerController.persona.email}" required="true"/>
                 <p:message for="txtEmail"/>
-
+            </div>
                 <p:outputLabel value="Sexo" for="rdbSexo"/>
                 <p:selectOneRadio id="rdbSexo" value="#{registerController.persona.sexo}" required="true">
                     <f:selectItem itemValue="M" itemLabel="MASCULINO"/>
@@ -52,40 +63,51 @@
                 <p:outputLabel for="txtFecha" value="Fec Nacimiento"/>
                 <p:calendar id="txtFecha" value="#{registerController.persona.fechaNacimiento}" locale="es" required="true"/>
                 <p:message for="txtFecha"/>
-            </h:panelGrid>
+
         </p:fieldset>
 
         <p:fieldset legend="Datos de la cuenta">
-            <h:panelGrid columns="3" id="pgCuenta">
+            <div class="form-row mb-4">
 
-                <p:outputLabel for="cboTipo" value="Tipo de Cuenta" />
+                <div class="col">
                 <p:selectOneMenu id="cboTipo" value="#{registerController.usuario.tipo}" required="true">
                     <f:selectItem itemValue="A" itemLabel="Administrador"/>
                     <f:selectItem itemValue="O" itemLabel="Operario"/>
                 </p:selectOneMenu>
                 <p:message for="cboTipo"/>
+                </div>
 
-                <p:outputLabel for="txtUser" value="Usuario"/>
-                <p:inputText id="txtUser" value="#{registerController.usuario.usuario}" required="true" requiredMessage="Campo Requerido"/>
+                <div class="col">
+
+                <p:inputText id="txtUser" value="#{registerController.usuario.usuario}" required="true"
+                             requiredMessage="Campo Requerido" placeholder="Usuario" styleClass="form-control" />
                 <p:message for="txtUser"/>
+            </div>
 
-                <p:outputLabel for="con1" value="Contraseña"/>
+            <div class="col">
                 <p:password id="con1" value="#{registerController.usuario.clave}" required="true" match="con2"
                             feedback="true" promptLabel="Ingrese una contraseña" requiredMessage="Campo Requerido"
                             validatorMessage="Las contraseñas no coinciden" weakLabel="Débil" strongLabel="Fuerte"
-                            goodLabel="Bueno"/>
+                            goodLabel="Bueno" placeholder="Contraseña" styleClass="form-control"/>
                 <p:message for="con1"/>
-
-                <p:outputLabel for="con2" value="Repetir contraseña"/>
-                <p:password id="con2" required="true" requiredMessage="Campo Requerido"/>
+            </div>
+            <div class="col">
+                <p:password id="con2" required="true" requiredMessage="Campo Requerido" styleClass="form-control" placeholder="Repetir Contraseña"/>
                 <p:message for="con2"/>
-
-            </h:panelGrid>
+            </div>
+            </div>
         </p:fieldset>
-
-        <p:commandButton value="Registrar" icon="ui-icon-check" update="pgDatos,pgCuenta,messages" actionListener="#{registerController.registrar()}"/>
-        <p:button value="Volver"  outcome="/index?faces-redirect=true"/>
+        <p:growl severity="info, fatal" showDetail="true">
+            <p:autoUpdate disabled="false"/>
+        </p:growl>
+        <p:commandButton value="Registrar" icon="ui-icon-check" styleClass="btn btn-success my-4" update="registro"
+                          actionListener="#{registerController.registrar()}"/>
+        <p:button value="Volver" styleClass="btn btn-outline-info btn-rounded my-4 waves-effect z-depth-0"  outcome="/index?faces-redirect=true"/>
     </h:form>
+    </div>
+
+    <h:outputScript library="bootstrap-4.3.1-dist" name="js/bootstrap.js"/>
+    <h:outputScript library="js" name="jQuery.js"/>
 </h:body>
 <h:outputScript library="js" name="SpanishLocale.js"/>
 </html>
