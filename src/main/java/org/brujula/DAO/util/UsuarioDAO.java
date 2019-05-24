@@ -2,6 +2,7 @@ package org.brujula.DAO.util;
 
 import org.brujula.Model.Usuario;
 
+import java.net.Inet4Address;
 import java.util.List;
 
 public interface UsuarioDAO extends BaseDAO<Usuario> {
@@ -11,4 +12,7 @@ public interface UsuarioDAO extends BaseDAO<Usuario> {
     Usuario iniciarSesion(Usuario usuario);
 
     List<Usuario> mostrarUsuarios();
+
+    void eliminar(Integer id);
+
 }

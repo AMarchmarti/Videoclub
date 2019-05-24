@@ -35,4 +35,6 @@ public class GeneroDAOImpl implements GeneroDAO {
         entity.getTransaction().commit();
 
     }
+
+
 }

@@ -24,7 +24,7 @@ CREATE TABLE usuario(
     usuario varchar(50) NOT NULL,
     clave varchar(80) not null,
     tipo enum('A','O'),
-    estado tinyint default 1,
+    estado tinyint,
     primary key(id),
     foreign key(dni_persona) references personas(dni));
     
@@ -66,6 +66,7 @@ drop table if exists menu;
 create table menu (
 	codigo tinyint not null auto_increment,
     nombre varchar(50) not null,
+    url varchar(50),
     tipo enum('S','I') not null,
     codigo_submenu tinyint,
     tipo_usuario enum('A', 'O') not null,
@@ -73,9 +74,11 @@ create table menu (
     primary key(codigo),
     foreign key (codigo_submenu) references menu(codigo));
     
-insert into menu (nombre, tipo,tipo_usuario,estado) values ('Peliculas', 'I','O', 1);
-insert into menu (nombre, tipo,tipo_usuario,estado) values ('Añadir', 'I','O', 1);
-insert into menu (nombre, tipo,tipo_usuario,estado) values ('Mis peliculas', 'I','O', 1);
-insert into menu (nombre, tipo,tipo_usuario,estado) values ('Usuarios', 'I','A', 1);
+insert into menu (nombre,url, tipo,tipo_usuario,estado) values ('Peliculas','principal.xhtml', 'I','O', 1);
+insert into menu (nombre,url, tipo,tipo_usuario,estado) values ('Añadir','añadir.xhtml', 'I','O', 1);
+insert into menu (nombre,url, tipo,tipo_usuario,estado) values ('Mis peliculas','mispeliculas.xhtml', 'I','O', 1);
+insert into menu (nombre,url,tipo,tipo_usuario,estado) values ('Usuarios','usuarios.xhtml', 'I','A', 1);
     
+    
+    select m.* from menu m where m.tipo_usuario = 'O' or m.tipo_usuario = 'A';
     

@@ -45,6 +45,7 @@ public class LoginController implements Serializable {
             if(null != us){
                 //Almacenar en la sesion de JSF
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
+                us.setEstado((short) 1);
 
                 //redireccion ="/protegido/principal"; //Navegación implicita,porque no veo la ruta en el nav
                 redireccion ="/protegido/principal?faces-redirect=true";//Navegación explicita

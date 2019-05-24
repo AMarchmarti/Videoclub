@@ -12,7 +12,7 @@ public class Usuario implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dni_persona", nullable = false)
     private Persona idUsuario;
 
@@ -27,6 +27,10 @@ public class Usuario implements Serializable {
 
     @Column
     private Short estado = 1;
+
+    public Integer getId() {
+        return id;
+    }
 
     public Persona getIdUsuario() {
         return idUsuario;

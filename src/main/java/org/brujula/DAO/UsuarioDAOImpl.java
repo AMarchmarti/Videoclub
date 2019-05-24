@@ -4,6 +4,7 @@ import org.brujula.DAO.util.JPAUtil;
 import org.brujula.DAO.util.UsuarioDAO;
 import org.brujula.Model.Usuario;
 
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
@@ -33,8 +34,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     //Buscar usuario
     @Override
     public Usuario buscar(Integer id){
-        Usuario user = new Usuario();
-        user = entity.find(Usuario.class, id);
+        Usuario user = entity.find(Usuario.class, id);
         return user;
     }
 
@@ -63,7 +63,14 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public List<Usuario> mostrarUsuarios(){
-        System.out.println("hola");
         return entity.createQuery("select u from Usuario u").getResultList();
+    }
+
+    @Override
+    public void eliminar(Integer id){
+        Usuario usuario = this.buscar(id);
+        entity.getTransaction().begin();
+        entity.remove(usuario);
+        entity.getTransaction().commit();
     }
 }

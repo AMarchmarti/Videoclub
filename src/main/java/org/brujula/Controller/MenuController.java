@@ -11,15 +11,16 @@ import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuModel;
 
 
-import javax.annotation.ManagedBean;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
-import javax.inject.Named;
+
+
 
 import java.io.Serializable;
-import java.util.List;
+
 
 
 
@@ -46,40 +47,28 @@ public class MenuController implements Serializable {
         this.model = model;
     }
 
-    public String redirigirAñadir(){
-        return "/protegido/añadir?faces-redirect=true";
-    }
-
-    public String redirigirPrincipal(){
-        return "/protegido/principal?faces-redirect=true";}
-
-
     public String mostrarUsuario(){
         Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
         return us.getUsuario();
-
     }
-
-    public String redirigirUsuario(){
-        return "/protegido/administrador/usuarios?faces-redirect=true";}
-
 
     public void visualizarMenu(){
 
         Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-        System.out.println(menuDAO.menuAdmin());
-        System.out.println("------------------------------------");
-        System.out.println(menuDAO.menuUsuario());
+
         if(us.getTipo().equals("A")){
             for (Menu menu : menuDAO.menuAdmin()) {
                 DefaultMenuItem item = new DefaultMenuItem(menu.getNombre());
-
+                if (menu.getUrl().equals("usuarios.xhtml")){
+                    item.setUrl("administrador/"+ menu.getUrl());
+                    item.setUrl(menu.getUrl());}
+                else{item.setUrl(menu.getUrl());}
                 model.addElement(item);}
 
         }else
             for (Menu menu : menuDAO.menuUsuario()){
                 DefaultMenuItem item = new DefaultMenuItem(menu.getNombre());
-
+                item.setUrl(menu.getUrl());
                 model.addElement(item);}
             }
 
