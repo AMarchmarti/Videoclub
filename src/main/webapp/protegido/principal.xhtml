@@ -2,16 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+
 <h:body>
     <ui:composition template="./../WEB-INF/template/plantilla.xhtml">
         <ui:define name="content">
             <h2>Bienvenido al videoclub, #{menuController.mostrarUsuario()}</h2>
 
-            <p:dialog header="Editar Pelicula" widgetVar="dlg" id="dlgEditar">
+            <p:dialog header="Editar Pelicula" widgetVar="edit" id="dlgEditar">
                 <div class="container">
                     <h:form>
                         <div class="row">
@@ -52,13 +53,13 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="card img-fluid">
-                                        <img class="card-img-top" src="./resources/images/The_Godfather.jpg"
+                                        <p:graphicImage styleClass="card-img-top" value="./resources/images/The_Godfather.jpg"
                                              alt="Card image"/>
                                         <div class="card-img-overlay">
                                             <h5 class="card-title">#{pelicula.titulo}</h5>
                                             <p class="card-body">#{pelicula.resumen}</p>
                                             <p:commandButton value="Editar" rendered="#{sessionController.establecerpermisos()}"
-                                                             oncomplete="PF('dlg').show()" update="dlgEditar"/>
+                                                             onclick="PF('edit').show();" update="dlgEditar"/>
 
                                             <p:commandButton value="Alquilar"/>
 
