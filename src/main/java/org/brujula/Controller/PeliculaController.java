@@ -91,4 +91,14 @@ public class PeliculaController implements Serializable {
         }
         return getListaPeliculas();
 
-}}
+    }
+
+    public void editarPelicula(){
+        try{
+            peliculaDAO.editar(pelicula);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "La ", pelicula.getTitulo() + " se edito correctamente"));
+        }catch (Exception e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!"));
+        }
+    }
+}

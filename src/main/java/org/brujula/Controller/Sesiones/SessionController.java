@@ -34,9 +34,9 @@ public class SessionController implements Serializable {
         Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 
         if (us.getTipo().equals("A")){
-            return false;
+            return true;
         }
-        return true;
+        return false;
 
 
     }

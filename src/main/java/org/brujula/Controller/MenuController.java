@@ -52,26 +52,37 @@ public class MenuController implements Serializable {
         return us.getUsuario();
     }
 
-    public void visualizarMenu(){
+    public void visualizarMenu() {
 
         Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 
-        if(us.getTipo().equals("A")){
+        if (us.getTipo().equals("A")) {
             for (Menu menu : menuDAO.menuAdmin()) {
                 DefaultMenuItem item = new DefaultMenuItem(menu.getNombre());
-                if (menu.getUrl().equals("usuarios.xhtml")){
-                    item.setUrl("/videoclub_toni/faces/protegido/administrador/"+ menu.getUrl());}
+                if (menu.getUrl().equals("usuarios.xhtml")) {
+                    item.setUrl("/videoclub_toni/faces/protegido/administrador/" + menu.getUrl());
+                }
 
                 model.addElement(item);
-                item.setUrl("/videoclub_toni/faces/protegido/" + menu.getUrl());}
-
-        }else
-            for (Menu menu : menuDAO.menuUsuario()){
-                DefaultMenuItem item = new DefaultMenuItem(menu.getNombre());
-                item.setUrl(menu.getUrl());
-                model.addElement(item);}
+                item.setUrl("/videoclub_toni/faces/protegido/" + menu.getUrl());
             }
 
+        } else
+            for (Menu menu : menuDAO.menuUsuario()) {
+                DefaultMenuItem item = new DefaultMenuItem(menu.getNombre());
+                item.setUrl(menu.getUrl());
+                model.addElement(item);
+            }
     }
+
+
+    public String visualizarAñadirGenero(Boolean permiso){
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        if (permiso){
+            return null;
+        }
+        return "+Añadir Genero";
+    }
+}
 
 

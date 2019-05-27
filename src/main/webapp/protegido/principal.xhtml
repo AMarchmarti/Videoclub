@@ -11,6 +11,40 @@
         <ui:define name="content">
             <h2>Bienvenido al videoclub, #{menuController.mostrarUsuario()}</h2>
 
+            <p:dialog header="Editar Pelicula" widgetVar="dlg" id="dlgEditar">
+                <div class="container">
+                    <h:form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p:selectOneMenu value="#{peliculaController.genero.nombre}" styleClass="form-control">
+                                    <f:selectItems value="#{peliculaController.getListarGenero()}"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col-md-6">
+                                <p:inputText value="#{peliculaController.pelicula.titulo}" styleClass="form-control" placeholder="Editar Tiutlo"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p:inputTextarea placeholder="Cambiar Sinopsis" styleClass="form-control"
+                                                 value="#{peliculaController.pelicula.resumen}"/>
+                            </div>
+                            <div class="col-md-4">
+                                <p:inputText value="#{peliculaController.pelicula.imagen}" styleClass="form-control"
+                                             placeholder="Introduzca nueva imagen"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p:commandButton styleClass="btn btn-success" value="Editar" oncomplete="PF('edit').hide()"
+                                             actionListener="#{peliculaController.editarPelicula()}"
+                                             update=":form"/>
+                            <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('edit').hide()"
+                                             styleClass="btn btn-danger"/>
+                        </div>
+                    </h:form>
+                </div>
+            </p:dialog>
+
             <div class="container">
                 <h:form id="form">
                     <p:repeat value="#{peliculaController.mostrarPeliculas()}" var="pelicula">
@@ -18,11 +52,16 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="card img-fluid">
-                                        <img class="card-img-top" src="/resources/images/The_Godfather.jpg" alt="Card image"/>
+                                        <img class="card-img-top" src="./resources/images/The_Godfather.jpg"
+                                             alt="Card image"/>
                                         <div class="card-img-overlay">
                                             <h5 class="card-title">#{pelicula.titulo}</h5>
                                             <p class="card-body">#{pelicula.resumen}</p>
-                                            <a href="#">SHOP NOW</a>
+                                            <p:commandButton value="Editar" rendered="#{sessionController.establecerpermisos()}"
+                                                             oncomplete="PF('dlg').show()" update="dlgEditar"/>
+
+                                            <p:commandButton value="Alquilar"/>
+
                                         </div>
                                     </div>
                                 </div>
