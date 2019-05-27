@@ -15,7 +15,7 @@ public class PeliculaDAOImpl implements PeliculaDAO, Serializable {
 
     @Override
     public Pelicula buscar(Integer id) {
-        return null;
+        return entity.find(Pelicula.class, id);
     }
 
     @Override

@@ -1,11 +1,13 @@
 package org.brujula.Controller;
 
+import org.apache.commons.fileupload.RequestContext;
 import org.brujula.DAO.GeneroDAOImpl;
 import org.brujula.DAO.PeliculaDAOImpl;
 import org.brujula.DAO.util.GeneroDAO;
 import org.brujula.DAO.util.PeliculaDAO;
 import org.brujula.Model.Genero;
 import org.brujula.Model.Pelicula;
+import org.primefaces.event.SelectEvent;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -93,8 +95,14 @@ public class PeliculaController implements Serializable {
 
     }
 
+    public void edicion(SelectEvent event){
+        pelicula = (Pelicula) event.getObject();
+    }
+
     public void editarPelicula(){
+
         try{
+            pelicula.setGenero(genero);
             peliculaDAO.editar(pelicula);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "La ", pelicula.getTitulo() + " se edito correctamente"));
         }catch (Exception e){
