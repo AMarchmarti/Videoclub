@@ -1,5 +1,7 @@
 package org.brujula.Model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -13,12 +15,12 @@ public class Alquiler implements Serializable {
     @Column(name = "id_alquiler")
     private Integer idAlquiler;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "id_usuario")
     private Usuario idUsuario;
 
-    @ManyToOne
-    @JoinColumn(name = "id_pelicula", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "id_pelicula")
     private Pelicula idPelicula;
 
     @Column

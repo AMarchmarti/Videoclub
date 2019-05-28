@@ -78,7 +78,14 @@ insert into menu (nombre,url, tipo,tipo_usuario,estado) values ('Peliculas','pri
 insert into menu (nombre,url, tipo,tipo_usuario,estado) values ('Añadir','añadir.xhtml', 'I','O', 1);
 insert into menu (nombre,url, tipo,tipo_usuario,estado) values ('Mis peliculas','mispeliculas.xhtml', 'I','O', 1);
 insert into menu (nombre,url,tipo,tipo_usuario,estado) values ('Usuarios','usuarios.xhtml', 'I','A', 1);
+
+drop table if exists codigoPromocional;
+create table codigoPromocional(
+	codigo varchar(20) not null,
+    primary key(codigo));
     
+insert into codigoPromocional value ('A32BX@520TXZ');
+
     
-    select m.* from menu m where m.tipo_usuario = 'O' or m.tipo_usuario = 'A';
+
     

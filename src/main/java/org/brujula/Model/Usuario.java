@@ -85,6 +85,7 @@ public class Usuario implements Serializable {
         return Objects.hash(id);
     }
 
+
     @Override
     public String toString() {
         return "Usuario{" +
