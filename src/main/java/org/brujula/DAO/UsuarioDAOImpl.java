@@ -1,5 +1,6 @@
 package org.brujula.DAO;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.brujula.DAO.util.JPAUtil;
 import org.brujula.DAO.util.UsuarioDAO;
 import org.brujula.Model.Usuario;
@@ -46,7 +47,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             consulta = "FROM Usuario u where u.usuario = ?1 and u.clave = ?2";
             Query query = entity.createQuery(consulta);
             query.setParameter(1, us.getUsuario());
-            query.setParameter(2, us.getClave());
+            query.setParameter(2, DigestUtils.md5Hex(us.getClave()));
 
             List<Usuario> lista = query.getResultList();
             if(!lista.isEmpty()){
