@@ -42,7 +42,7 @@
                         <div class="col-md-4">
                             <p:inputText id="txtApellidos" value="#{registerController.persona.apellidos}"
                                          required="true"
-                                         requiredMessage="Se requiere valor" placeholder="Telefono"
+                                         requiredMessage="Se requiere valor" placeholder="Apellidos"
                                          styleClass="form-control"/>
                             <p:message for="txtApellidos"/>
                         </div>
@@ -51,7 +51,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <p:inputText id="txtTelefono" value="#{registerController.persona.telefono}" required="true"
-                                         placeholder="Apellidos" styleClass="form-control"
+                                         placeholder="Telefono" styleClass="form-control"
                                          requiredMessage="Se requiere valor"/>
                             <p:message for="txtTelefono"/>
                         </div>
@@ -87,33 +87,33 @@
             </p:fieldset>
 
             <p:fieldset legend="Datos de la cuenta">
-                <div class="form-row mb-4">
+                <div class="form-row">
 
-                    <div class="col">
-                        <p:selectOneMenu id="cboTipo" value="#{registerController.usuario.tipo}" required="true">
-                            <f:selectItem itemValue="A" itemLabel="Administrador"/>
-                            <f:selectItem itemValue="O" itemLabel="Operario"/>
-                        </p:selectOneMenu>
+                    <div class="col-md-6">
+                        <p:inputText id="cboTipo" value="#{registerController.codigo.codigo}" styleClass="form-control"
+                                     placeholder="Inserte su código promocional"/>
                         <p:message for="cboTipo"/>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-6">
 
                         <p:inputText id="txtUser" value="#{registerController.usuario.usuario}" required="true"
                                      requiredMessage="Campo Requerido" placeholder="Usuario" styleClass="form-control"/>
                         <p:message for="txtUser"/>
                     </div>
 
-                    <div class="col">
-                        <p:password id="con1" value="#{registerController.usuario.clave}" required="true" match="con2"
+                    <div class="col-md-6">
+                        <p:password id="con1" value="#{registerController.contraseña}" required="true" match="con2"
                                     feedback="true" promptLabel="Ingrese una contraseña"
                                     requiredMessage="Campo Requerido"
                                     validatorMessage="Las contraseñas no coinciden" weakLabel="Débil"
                                     strongLabel="Fuerte"
-                                    goodLabel="Bueno" placeholder="Contraseña" styleClass="form-control"/>
+                                    goodLabel="Bueno" placeholder="Contraseña" styleClass="form-control">
+                            <f:validator validatorId="custom.validator" />
+                        </p:password>
                         <p:message for="con1"/>
                     </div>
-                    <div class="col">
+                    <div class="col-md-6">
                         <p:password id="con2" required="true" requiredMessage="Campo Requerido"
                                     styleClass="form-control"
                                     placeholder="Repetir Contraseña"/>
