@@ -19,7 +19,7 @@
                     <p:inputText value="#{generoController.genero.nombre}"/>
                     <p:commandButton styleClass="btn btn-success" value="Añadir" oncomplete="PF('dlg').hide()"
                                      actionListener="#{generoController.añadirCategoria}"
-                                     update="formGenero:advanced" process="@this"/>
+                                     update="formGenero:advanced" />
                     <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('dlg').hide()"
                                      styleClass="btn btn-danger"/>
 
@@ -39,7 +39,7 @@
                             </p:selectOneListbox>
                             <p:commandButton styleClass="btn btn-primary" value="+ Añadir Genero"
                                              rendered="#{sessionController.establecerpermisos()}"
-                                             onclick="PF('dlg').show();" update="dlgGenero"/>
+                                             oncomplete="PF('dlg').show();" update="dlgGenero"/>
 
 
                         </div>
