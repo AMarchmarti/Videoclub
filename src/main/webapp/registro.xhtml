@@ -27,7 +27,7 @@
                             <p:inputText id="txtDNI" value="#{registerController.persona.dni}" required="true"
                                          placeholder="DNI"
                                          requiredMessage="Se requiere valor" styleClass="form-control">
-                                <f:validateRegex pattern="^[0-9]{8}[^IÑOU]"/>
+                                <f:validateRegex pattern="^[0-212121]"/>
                             </p:inputText>
                             <p:message for="txtDNI"/>
                         </div>
@@ -108,9 +108,7 @@
                                     requiredMessage="Campo Requerido"
                                     validatorMessage="Las contraseñas no coinciden" weakLabel="Débil"
                                     strongLabel="Fuerte"
-                                    goodLabel="Bueno" placeholder="Contraseña" styleClass="form-control">
-                            <f:validator validatorId="custom.validator" />
-                        </p:password>
+                                    goodLabel="Bueno" placeholder="Contraseña" styleClass="form-control"/>
                         <p:message for="con1"/>
                     </div>
                     <div class="col-md-6">
