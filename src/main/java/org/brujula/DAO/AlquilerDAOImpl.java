@@ -3,8 +3,11 @@ package org.brujula.DAO;
 import org.brujula.DAO.util.AlquilerDAO;
 import org.brujula.DAO.util.JPAUtil;
 import org.brujula.Model.Alquiler;
+import org.brujula.Model.Usuario;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.List;
 
 public class AlquilerDAOImpl implements AlquilerDAO {
 
@@ -29,6 +32,17 @@ public class AlquilerDAOImpl implements AlquilerDAO {
 
     @Override
     public void editar(Alquiler type) {
+        entity.getTransaction().begin();
+        entity.merge(type);
+        entity.getTransaction().commit();
+    }
 
+    @Override
+    public List<Alquiler> listaPeliculasAlquiladas(Usuario usuario) {
+        entity.getTransaction().begin();
+        Query query = entity.createQuery("select a from Alquiler a where a.idUsuario = ?1");
+        query.setParameter(1,usuario);
+        entity.getTransaction().commit();
+        return query.getResultList();
     }
 }

@@ -20,6 +20,7 @@ import javax.faces.view.ViewScoped;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @ManagedBean
@@ -33,14 +34,16 @@ public class AlquilerController implements Serializable {
 
     private PeliculaDAO peliculaDAO;
 
-    private UsuarioDAO usuarioDAO;
+    private List<Alquiler> misPeliculas;
+
+    private Usuario usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 
     @PostConstruct
     public void init(){
         alquilerDAO = new AlquilerDAOImpl();
         peliculaDAO = new PeliculaDAOImpl();
-        usuarioDAO = new UsuarioDAOImpl();
         alquiler = new Alquiler();
+        misPeliculas = alquilerDAO.listaPeliculasAlquiladas(usuario);
     }
 
     public Alquiler getAlquiler() {
@@ -58,10 +61,17 @@ public class AlquilerController implements Serializable {
         return false;
     }
 
+    public List<Alquiler> getMisPeliculas() {
+        return misPeliculas;
+    }
+
+    public void setMisPeliculas(List<Alquiler> misPeliculas) {
+        this.misPeliculas = misPeliculas;
+    }
 
 
     public void alquilarPelicula(Pelicula pelicula){
-        Usuario usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+
         try{
 
             alquiler.setIdPelicula(pelicula);

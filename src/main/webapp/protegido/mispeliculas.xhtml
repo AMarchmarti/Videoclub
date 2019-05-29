@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+    <ui:composition template="./../WEB-INF/template/plantilla.xhtml">
+        <ui:define name="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h:form>
+                            <p:dataTable value="#{alquilerController.misPeliculas}" var="pelicula"
+                                         styleClass="table table-striped table-bordered">
+                                <p:column headerText="Imagen">
+                                    <h:outputText value="#{pelicula.idPelicula.imagen}"/>
+                                </p:column>
+
+                                <p:column headerText="Pelicula">
+                                    <h:outputText value="#{pelicula.idPelicula.titulo}"/>
+                                </p:column>
+
+                                <p:column headerText="Genero">
+                                    <h:outputText value="#{pelicula.idPelicula.genero.nombre}"/>
+                                </p:column>
+
+                                <p:column headerText="Fecha de alquiler">
+                                    <h:outputText value="#{pelicula.fechaAlquiler}"/>
+                                </p:column>
+
+                                <p:commandButton value="Devolver">
+                                    <p:confirm header="Confirmación" message="Estás seguro de devolverla el usuario?"
+                                               icon="pi pi-exclamation-triangle"/>
+                                </p:commandButton>
+
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes"
+                                                     icon="pi pi-check"/>
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                                                     icon="pi pi-times"/>
+                                </p:confirmDialog>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
