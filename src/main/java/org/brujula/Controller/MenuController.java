@@ -53,6 +53,11 @@ public class MenuController implements Serializable {
         return us.getUsuario();
     }
 
+    public Usuario usuarioSesion(){
+        Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        return us;
+    }
+
     public void visualizarMenu() {
 
         Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");

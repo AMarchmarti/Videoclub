@@ -17,7 +17,7 @@ public class Alquiler implements Serializable {
     @Column(name = "id_alquiler")
     private Integer idAlquiler;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario idUsuario;
 
@@ -41,7 +41,7 @@ public class Alquiler implements Serializable {
         return idUsuario;
     }
 
-    public void setIdUsuario(Usuario idPersona) {
+    public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
     }
 

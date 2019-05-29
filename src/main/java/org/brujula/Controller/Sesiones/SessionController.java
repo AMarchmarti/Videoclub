@@ -2,6 +2,7 @@ package org.brujula.Controller.Sesiones;
 
 import org.brujula.Model.Usuario;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -9,7 +10,7 @@ import javax.inject.Inject;
 import java.io.Serializable;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class SessionController implements Serializable {
 
     public void verificarSesion(){

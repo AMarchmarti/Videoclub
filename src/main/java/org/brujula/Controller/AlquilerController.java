@@ -14,20 +14,21 @@ import org.brujula.Model.Usuario;
 import javax.faces.bean.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import java.io.Serializable;
+import java.sql.Date;
+import java.time.LocalDate;
 
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class AlquilerController implements Serializable {
 
 
     private AlquilerDAO alquilerDAO;
 
-    @ManagedProperty(value = "#{alquilerModel}")
     private Alquiler alquiler;
 
     private PeliculaDAO peliculaDAO;
@@ -39,6 +40,7 @@ public class AlquilerController implements Serializable {
         alquilerDAO = new AlquilerDAOImpl();
         peliculaDAO = new PeliculaDAOImpl();
         usuarioDAO = new UsuarioDAOImpl();
+        alquiler = new Alquiler();
     }
 
     public Alquiler getAlquiler() {
@@ -57,11 +59,11 @@ public class AlquilerController implements Serializable {
 
     public void alquilarPelicula(Pelicula pelicula){
         Usuario usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-
         try{
             estaAlquilada(pelicula);
             alquiler.setIdPelicula(pelicula);
-            alquiler.setIdUsuario(usuarioDAO.buscar(usuario.getId()));
+            alquiler.setIdUsuario(usuario);
+            alquiler.setFechaAlquiler(Date.valueOf(LocalDate.now()));
             alquilerDAO.registrar(alquiler);
             pelicula.setEstado(false);
             peliculaDAO.editar(pelicula);
