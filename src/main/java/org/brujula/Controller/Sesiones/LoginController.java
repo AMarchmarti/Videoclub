@@ -7,6 +7,7 @@ import org.brujula.Model.Usuario;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 
@@ -20,11 +21,11 @@ public class LoginController implements Serializable {
 
     private UsuarioDAO usuarioDAO;
 
+    @ManagedProperty(value = "#{usuarioModel}")
     private Usuario usuario;
 
     @PostConstruct
     public void init(){
-        usuario = new Usuario();
         usuarioDAO = new UsuarioDAOImpl();
     }
 

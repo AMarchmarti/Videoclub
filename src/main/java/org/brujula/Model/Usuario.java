@@ -1,10 +1,12 @@
 package org.brujula.Model;
 
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@ManagedBean(name = "usuarioModel")
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {

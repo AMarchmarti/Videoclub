@@ -9,6 +9,7 @@ import org.brujula.Model.Usuario;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import java.io.Serializable;
@@ -22,15 +23,13 @@ public class UsuariosController implements Serializable {
 
     private PersonaDAO personaDAO = new PersonaDAOImpl();
 
-    private String confirmacionEliminar;
-
     private List<Usuario> listaUsuarios;
 
+    @ManagedProperty(value = "#{usuarioModel}")
     private Usuario usuario;
 
     @PostConstruct
     public void init(){
-        usuario = new Usuario();
         listaUsuarios = usuarioDAO.mostrarUsuarios();
     }
 

@@ -1,9 +1,11 @@
 package org.brujula.Model;
 
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.Serializable;
 
+@ManagedBean(name = "generoModel")
 @Entity
 @Table(name = "generos")
 public class Genero implements Serializable {

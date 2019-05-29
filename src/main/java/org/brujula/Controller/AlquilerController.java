@@ -14,6 +14,7 @@ import org.brujula.Model.Usuario;
 import javax.faces.bean.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
@@ -26,6 +27,7 @@ public class AlquilerController implements Serializable {
 
     private AlquilerDAO alquilerDAO;
 
+    @ManagedProperty(value = "#{alquilerModel}")
     private Alquiler alquiler;
 
     private PeliculaDAO peliculaDAO;
@@ -35,7 +37,6 @@ public class AlquilerController implements Serializable {
     @PostConstruct
     public void init(){
         alquilerDAO = new AlquilerDAOImpl();
-        alquiler = new Alquiler();
         peliculaDAO = new PeliculaDAOImpl();
         usuarioDAO = new UsuarioDAOImpl();
     }

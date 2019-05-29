@@ -2,10 +2,12 @@ package org.brujula.Model;
 
 import org.hibernate.annotations.Cascade;
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@ManagedBean(name = "alquilerModel")
 @Entity
 @Table(name = "alquileres")
 public class Alquiler implements Serializable {

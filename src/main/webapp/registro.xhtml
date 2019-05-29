@@ -27,7 +27,7 @@
                             <p:inputText id="txtDNI" value="#{registerController.persona.dni}" required="true"
                                          placeholder="DNI"
                                          requiredMessage="Se requiere valor" styleClass="form-control">
-                                <f:validateRegex pattern="^[0-212121]"/>
+                                <f:validateRegex pattern="^[0-9]{8}[^IÑOU]"/>
                             </p:inputText>
                             <p:message for="txtDNI"/>
                         </div>

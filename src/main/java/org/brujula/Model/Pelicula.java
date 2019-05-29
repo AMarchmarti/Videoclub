@@ -1,9 +1,11 @@
 package org.brujula.Model;
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.*;
 import java.util.Objects;
 
+@ManagedBean(name = "peliculaModel")
 @Entity
 @Table(name = "peliculas")
 public class Pelicula implements Serializable{
