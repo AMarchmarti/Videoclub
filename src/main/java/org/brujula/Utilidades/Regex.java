@@ -1,9 +1,12 @@
 package org.brujula.Utilidades;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import java.io.Serializable;
 
 @ManagedBean
-public enum Regex {
+@ViewScoped
+public enum Regex implements Serializable {
 
     CONTRASEÑA("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$"),
     EMAIL("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
