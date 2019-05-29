@@ -51,16 +51,19 @@ public class AlquilerController implements Serializable {
         this.alquiler = alquiler;
     }
 
-    public void estaAlquilada(Pelicula pelicula) throws PeliculaAlqulada{
+    public Boolean estaAlquilada(Pelicula pelicula){
         if (!pelicula.getEstado()){
-            throw new PeliculaAlqulada();
+            return true;
         }
+        return false;
     }
+
+
 
     public void alquilarPelicula(Pelicula pelicula){
         Usuario usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
         try{
-            estaAlquilada(pelicula);
+
             alquiler.setIdPelicula(pelicula);
             alquiler.setIdUsuario(usuario);
             alquiler.setFechaAlquiler(Date.valueOf(LocalDate.now()));
@@ -69,8 +72,6 @@ public class AlquilerController implements Serializable {
             peliculaDAO.editar(pelicula);
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Buena elección", "has alquilado " + pelicula.getTitulo()));
-        }catch (PeliculaAlqulada e){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Lo sentimos", "esta pelicula está alquilada"));
         }catch (Exception e){
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!"));
         }

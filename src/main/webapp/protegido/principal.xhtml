@@ -61,7 +61,9 @@
                                             <p:commandButton value="Editar" onclick="PF('dlg').show();" type="button">
                                                 <p:ajax event="dialogReturn" listener="#{peliculaController.edicion()}"/>
                                             </p:commandButton>
-                                            <p:commandButton value="Alquilar" actionListener="#{alquilerController.alquilarPelicula(pelicula)}"/>
+                                            <p:commandButton value="Alquilar" update="@form" process="@this"
+                                                             disabled="#{alquilerController.estaAlquilada(pelicula)}"
+                                                             actionListener="#{alquilerController.alquilarPelicula(pelicula)}"/>
 
                                         </div>
                                     </div>
