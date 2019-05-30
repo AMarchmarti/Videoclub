@@ -7,26 +7,26 @@ import org.brujula.Model.Usuario;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 
 
 
 import java.io.Serializable;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class LoginController implements Serializable {
 
     private UsuarioDAO usuarioDAO;
 
-    @ManagedProperty(value = "#{usuarioModel}")
     private Usuario usuario;
 
     @PostConstruct
     public void init(){
         usuarioDAO = new UsuarioDAOImpl();
+        usuario = new Usuario();
     }
 
     public Usuario getUsuario() {
@@ -41,12 +41,12 @@ public class LoginController implements Serializable {
         String redireccion = null;
         Usuario us;
         try{
+
             us = usuarioDAO.iniciarSesion(usuario);
 
             if(null != us){
                 //Almacenar en la sesion de JSF
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
-                us.setEstado((short) 1);
 
                 //redireccion ="/protegido/principal"; //Navegación implicita,porque no veo la ruta en el nav
                 redireccion ="/protegido/principal?faces-redirect=true";//Navegación explicita

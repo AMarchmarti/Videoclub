@@ -1,12 +1,10 @@
 package org.brujula.Controller;
 
-import org.brujula.Controller.Exceptions.PeliculaAlqulada;
+
 import org.brujula.DAO.AlquilerDAOImpl;
 import org.brujula.DAO.PeliculaDAOImpl;
-import org.brujula.DAO.UsuarioDAOImpl;
 import org.brujula.DAO.util.AlquilerDAO;
 import org.brujula.DAO.util.PeliculaDAO;
-import org.brujula.DAO.util.UsuarioDAO;
 import org.brujula.Model.Alquiler;
 import org.brujula.Model.Pelicula;
 import org.brujula.Model.Usuario;
@@ -14,9 +12,8 @@ import org.brujula.Model.Usuario;
 import javax.faces.bean.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -24,7 +21,7 @@ import java.util.List;
 
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class AlquilerController implements Serializable {
 
 
@@ -86,5 +83,11 @@ public class AlquilerController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Aviso", "Error!"));
         }
 
+    }
+
+    public void devolverPelicula(Alquiler peliculaAlquilada){
+        peliculaAlquilada.getIdPelicula().setEstado(true);
+        peliculaDAO.editar(peliculaAlquilada.getIdPelicula());
+        alquilerDAO.eliminar(peliculaAlquilada.getIdAlquiler());
     }
 }

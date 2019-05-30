@@ -11,7 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,12 +25,12 @@ public class UsuariosController implements Serializable {
 
     private List<Usuario> listaUsuarios;
 
-    @ManagedProperty(value = "#{usuarioModel}")
     private Usuario usuario;
 
     @PostConstruct
     public void init(){
         listaUsuarios = usuarioDAO.mostrarUsuarios();
+        usuario = new Usuario();
     }
 
     public Usuario getUsuario() {
@@ -63,7 +63,7 @@ public class UsuariosController implements Serializable {
     }
 
     public String estadoUsuario(Usuario usuario){
-        return (usuario.getEstado() == (short) 1) ? "Conectado" : "Desconectado";
+        return (usuario.getEstado()) ? "Conectado" : "Desconectado";
     }
 
     public Boolean botonEliminarUsuario(Usuario usuario){

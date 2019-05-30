@@ -1,6 +1,7 @@
 package org.brujula.Controller.Sesiones;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.brujula.Controller.Exceptions.UsuarioNoDisponible;
 import org.brujula.DAO.PromocionDAOImpl;
 import org.brujula.DAO.UsuarioDAOImpl;
 import org.brujula.DAO.util.PromocionDAO;
@@ -12,9 +13,8 @@ import org.brujula.Model.Usuario;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.List;
 
@@ -29,24 +29,28 @@ public class RegisterController implements Serializable {
 
     private PromocionDAO promocionDAO;
 
-    @ManagedProperty(value = "#{promocionModel}")
     private CodigoPromocional codigo;
 
     private String contraseña;
 
-    @ManagedProperty(value = "#{usuarioModel}")
     private Usuario usuario;
 
-    @ManagedProperty(value = "#{personaModel}")
     private Persona persona ;
+
+    private List<String> listaUsuarios;
 
     private List<CodigoPromocional> codigos;
 
     @PostConstruct
     public void init(){
+        usuario = new Usuario();
+        persona = new Persona();
+        codigo = new CodigoPromocional();
         usuarioDAO = new UsuarioDAOImpl();
         promocionDAO = new PromocionDAOImpl();
         codigos = promocionDAO.codigos();
+        listaUsuarios = usuarioDAO.nombreUsuarios();
+
     }
 
     public String getContraseña() {
@@ -91,19 +95,32 @@ public class RegisterController implements Serializable {
         }
     }
 
-    public void registrar(){
-        try{
+    public void existeUsuario() throws UsuarioNoDisponible{
+        if(listaUsuarios.contains(usuario.getUsuario())){
+            throw new UsuarioNoDisponible();
+        }
+    }
 
+    public void registrar(){
+        try {
+            existeUsuario();
             this.usuario.setIdUsuario(persona);
             usuario.setClave(DigestUtils.md5Hex(contraseña));
-            if(esAdmin()){
+            if (esAdmin()) {
                 usuarioDAO.registrar(usuario);
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
                         "Aviso", persona.getNombre() + " se registró como usuario admin"));
-            }else{
+            } else {
                 usuarioDAO.registrar(usuario);
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
-                        "Aviso", persona.getNombre() + " se registró"));}
+                        "Aviso", persona.getNombre() + " se registró"));
+            }
+
+        }catch (UsuarioNoDisponible e){
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
+                    "Aviso", "Ese nombre de usuario ya esta cogido, por favor introduzca otro"));
+
         }catch (Exception  e){
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,

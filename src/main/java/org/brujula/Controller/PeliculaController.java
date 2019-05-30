@@ -12,14 +12,13 @@ import org.primefaces.event.SelectEvent;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.List;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class PeliculaController implements Serializable {
 
 
@@ -27,10 +26,8 @@ public class PeliculaController implements Serializable {
 
     private GeneroDAO generoDAO;
 
-    @ManagedProperty(value = "#{peliculaModel}")
     private Pelicula pelicula;
 
-    @ManagedProperty(value = "#{generoModel}")
     private Genero genero;
 
     private List<Genero> listarGenero;
@@ -43,6 +40,8 @@ public class PeliculaController implements Serializable {
         generoDAO = new GeneroDAOImpl();
         listarGenero = generoDAO.findAll();
         listaPeliculas = peliculaDAO.recuperarPeliculas();
+        pelicula = new Pelicula();
+        genero = new Genero();
     }
 
     public List<Genero> getListarGenero() {
