@@ -19,7 +19,11 @@ public class AlquilerDAOImpl implements AlquilerDAO {
     }
 
     @Override
-    public void eliminar(Alquiler alquiler) {
+    public void eliminar(Integer id) {
+        Alquiler alquiler = buscar(id);
+        entity.getTransaction().begin();
+        entity.remove(alquiler);
+        entity.getTransaction().commit();
 
     }
 

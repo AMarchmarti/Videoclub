@@ -9,7 +9,7 @@ public interface AlquilerDAO extends BaseDAO<Alquiler> {
 
     Alquiler buscar(Integer id);
 
-    void eliminar(Alquiler alquiler);
+    void eliminar(Integer id);
 
     List<Alquiler> listaPeliculasAlquiladas(Usuario usuario);
 }
