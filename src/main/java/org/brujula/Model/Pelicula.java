@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.io.*;
 import java.util.Objects;
 
-@ManagedBean(name = "peliculaModel")
+
 @Entity
 @Table(name = "peliculas")
 public class Pelicula implements Serializable{

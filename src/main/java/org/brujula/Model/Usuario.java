@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@ManagedBean(name = "usuarioModel")
+
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {
@@ -28,7 +28,7 @@ public class Usuario implements Serializable {
     private String tipo;
 
     @Column
-    private Short estado = 1;
+    private Boolean estado = false;
 
     public Integer getId() {
         return id;
@@ -66,11 +66,11 @@ public class Usuario implements Serializable {
         this.tipo = tipo;
     }
 
-    public Short getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(Short estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 

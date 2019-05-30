@@ -5,7 +5,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@ManagedBean(name = "personaModel")
 @Entity
 @Table(name = "personas")
 public class Persona implements Serializable {

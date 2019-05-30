@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@ManagedBean(name = "menuModel")
+
 @Entity
 @Table(name = "menu")
 public class Menu implements Serializable {

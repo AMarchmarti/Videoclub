@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@ManagedBean(name = "alquilerModel")
+
 @Entity
 @Table(name = "alquileres")
 public class Alquiler implements Serializable {

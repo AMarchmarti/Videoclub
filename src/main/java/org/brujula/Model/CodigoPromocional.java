@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-@ManagedBean(name = "promocionModel")
+
 @Entity
 @Table(name = "codigoPromocional")
 public class CodigoPromocional implements Serializable {
