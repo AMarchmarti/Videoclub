@@ -11,8 +11,92 @@
     <ui:composition template="./../WEB-INF/template/plantilla.xhtml">
 
         <ui:define name="content">
+            <div class="container">
+                <div class="row">
+                    <h3 class="title" style="padding: 70px 0;">Perfil</h3>
+                </div>
 
 
+                <p:dialog widgetVar="edit" header="Editar Perfil" id="dlgEdit">
+                    <h:form>
+                        <div class="container">
+                            <div class="row" style="margin-bottom: 20px;">
+                            </div>
+                            <div class="row" style="margin-bottom: 20px;">
+                                <p:inputText value="#{usuariosController.user.usuario}"
+                                             placeholder="Inserta Nuevo Usuario" styleClass="form-control"/>
+                            </div>
+
+                            <div class="row" style="margin-bottom: 20px;">
+                                <p:password value="#{usuariosController.user.clave}"
+                                            placeholder="Inserta Nueva clave" styleClass="form-control"/>
+                            </div>
+
+                            <div class="row" style="margin-bottom: 20px;">
+                                <p:inputText value="#{usuariosController.user.idUsuario.dni}"
+                                             placeholder="Inserta Nuevo Dni" styleClass="form-control"/>
+                            </div>
+                            <div class="row" style="margin-bottom: 20px;">
+                                <p:inputText value="#{usuariosController.user.idUsuario.nombre}"
+                                             placeholder="Inserta Nuevo Nombre" styleClass="form-control"/>
+                            </div>
+                            <div class="row" style="margin-bottom: 20px;">
+                                <p:inputText value="#{usuariosController.user.idUsuario.apellidos}"
+                                             placeholder="Inserta Nuevo Apellidos" styleClass="form-control"/>
+                            </div>
+                            <div class="row" style="margin-bottom: 20px;">
+                                <p:inputText value="#{usuariosController.user.idUsuario.email}"
+                                             placeholder="Inserta Nuevo Email" styleClass="form-control"/>
+                            </div>
+                            <div class="row" style="margin-bottom: 20px;">
+                                <p:inputText value="#{usuariosController.user.idUsuario.telefono}"
+                                             placeholder="Inserta Nuevo Telefono" styleClass="form-control"/>
+                            </div>
+                            <div class="row" style="margin-bottom: 20px;">
+                                <p:inputText placeholder="guradar imagen de perfil"/>
+                            </div>
+
+                            <div class="row" style="margin-bottom: 20px;">
+                                <p:commandButton styleClass="btn btn-dark btn-outline-success" value="Editar" oncomplete="PF('dlg').hide()"
+                                                 actionListener="#{usuariosController.editar()}" update=":muestraCaracteristicas"/>
+                                <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('dlg').hide()"
+                                                 styleClass="btn btn-dark btn-outline-danger"/>
+                            </div>
+                        </div>
+                    </h:form>
+                </p:dialog>
+
+                <h:form id="muestraCaracteristicas">
+                    <div class="row">
+                        <div class="col-md-3" >
+                            <p:graphicImage library="images" styleClass="img-responsive img-bordered"
+                                            name="imagenPerfil.jpg" width="240px"/>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row" style="margin-bottom: 20px;">
+                                <h:outputText value="#{usuariosController.mostrarDNI()}"/>
+                            </div>
+                            <div class="row" style="margin-bottom: 20px;">
+                                <h:outputText value="#{usuariosController.mostrarNombreCompletoPersona()}"/>
+                            </div>
+                            <div class="row" style="margin-bottom: 20px;">
+                                <h:outputText  value="#{usuariosController.mostrarEmailUsuario()}"/>
+                            </div>
+                            <div class="row" style="margin-bottom: 20px;">
+                                <h:outputText  value="#{usuariosController.mostrarTelefonoUsuario()}"/>
+                            </div>
+                            <div class="row" style="margin-bottom: 20px;">
+                                <h:outputText value="#{usuariosController.mostrarFechaNacimientoUsuario()}" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <p:commandButton styleClass="btn-dark btn-outline-info" value="Editar" onclick="PF('edit').show();"
+                         type="button"/>
+                    </div>
+                </h:form>
+            </div>
         </ui:define>
     </ui:composition>
 </h:body>
