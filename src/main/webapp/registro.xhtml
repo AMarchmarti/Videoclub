@@ -123,7 +123,7 @@
                 <p:autoUpdate disabled="false"/>
             </p:growl>
             <p:commandButton value="Registrar" icon="ui-icon-check" styleClass="btn btn-success my-4" update="registro"
-                             actionListener="#{registerController.registrar()}"/>
+                             actionListener="#{registerController.registrar()}" process="@this"/>
             <p:button value="Volver" styleClass="btn btn-outline-info btn-rounded my-4 waves-effect z-depth-0"
                       outcome="/index?faces-redirect=true"/>
         </h:form>

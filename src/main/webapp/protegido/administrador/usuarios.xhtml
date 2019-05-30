@@ -66,18 +66,18 @@
                                 </p:column>
 
                                 <p:rowExpansion>
-                                    <p:dataTable value="alquilerController.mostrarAlquileres">
+                                    <p:dataTable value="#{alquilerController.misPeliculas}" var="pelicula">
 
                                         <p:column headerText="Imagen">
-                                            <h:outputText value="imagenPelicula"/>
+                                            <h:outputText value="#{pelicula.idPelicula.imagen}"/>
                                         </p:column>
 
                                         <p:column headerText="Pelicula">
-                                            <h:outputText value="nombrePelicula"/>
+                                            <h:outputText value="#{pelicula.idPelicula.titulo}"/>
                                         </p:column>
 
                                         <p:column headerText="Genero">
-                                            <h:outputText value="generoPelicula"/>
+                                            <h:outputText value="#{pelicula.idPelicula.genero.nombre}"/>
                                         </p:column>
 
                                     </p:dataTable>
