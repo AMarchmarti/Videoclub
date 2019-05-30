@@ -24,7 +24,7 @@ CREATE TABLE usuario(
     usuario varchar(50) NOT NULL,
     clave varchar(80) not null,
     tipo enum('A','O'),
-    estado tinyint,
+    estado tinyint default 0,
     primary key(id),
     foreign key(dni_persona) references personas(dni));
     
