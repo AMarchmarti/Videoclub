@@ -40,8 +40,13 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     }
 
     @Override
+    public Usuario buscarPorUsuario(String nombreUsuario){
+        return entity.find(Usuario.class, nombreUsuario);
+    }
+
+    @Override
     public Usuario iniciarSesion(Usuario us) {
-        Usuario usuario = null;
+        Usuario user = null;
         String consulta;
         try {
             consulta = "FROM Usuario u where u.usuario = ?1 and u.clave = ?2";
@@ -51,16 +56,20 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
             List<Usuario> lista = query.getResultList();
             if(!lista.isEmpty()){
-                usuario = lista.get(0);
+                user = lista.get(0);
+                user.setEstado(true);
+                this.editar(user);
             }
         }catch (Exception e){
             throw e;
         }finally {
             entity.close();
         }
-        return usuario;
+        return user;
     }
 
+    @Override
+    public List<String> nombreUsuarios(){return entity.createQuery("select u.usuario from Usuario u").getResultList();}
 
     @Override
     public List<Usuario> mostrarUsuarios(){

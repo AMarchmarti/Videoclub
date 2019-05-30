@@ -15,4 +15,8 @@ public interface UsuarioDAO extends BaseDAO<Usuario> {
 
     void eliminar(Integer id);
 
+    Usuario buscarPorUsuario(String nombreUsuario);
+
+    List<String> nombreUsuarios();
+
 }
