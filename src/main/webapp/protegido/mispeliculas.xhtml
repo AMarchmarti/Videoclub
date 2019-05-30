@@ -36,8 +36,7 @@
 
                                 <p:growl id="message" showDetail="true"/>
 
-                                    <p:commandButton value="Devolver" actionListener="#{alquilerController.devolverPelicula(pelicula)}"
-                                                        update="@form" process="@this">
+                                    <p:commandButton value="Devolver" actionListener="#{alquilerController.devolverPelicula(pelicula)}">
                                         <p:confirm header="Confirmación" message="Estás seguro de devolverla?"
                                                    icon="pi pi-exclamation-triangle"/>
                                     </p:commandButton>

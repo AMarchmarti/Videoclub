@@ -12,8 +12,9 @@ import org.brujula.Model.Usuario;
 import javax.faces.bean.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -32,6 +33,7 @@ public class AlquilerController implements Serializable {
     private PeliculaDAO peliculaDAO;
 
     private List<Alquiler> misPeliculas;
+
 
     private Usuario usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 
@@ -89,5 +91,10 @@ public class AlquilerController implements Serializable {
         peliculaAlquilada.getIdPelicula().setEstado(true);
         peliculaDAO.editar(peliculaAlquilada.getIdPelicula());
         alquilerDAO.eliminar(peliculaAlquilada.getIdAlquiler());
+
+    }
+
+    public List<Alquiler> mostrarPeliculasUsuario(Usuario user){
+        return (usuario == user) ? misPeliculas : alquilerDAO.listaPeliculasAlquiladas(user);
     }
 }

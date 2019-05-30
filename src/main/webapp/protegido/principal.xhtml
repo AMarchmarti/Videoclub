@@ -58,7 +58,7 @@
                                         <div class="card-img-overlay">
                                             <h5 class="card-title">#{pelicula.titulo}</h5>
                                             <p class="card-body">#{pelicula.resumen}</p>
-                                            <p:commandButton value="Editar" onclick="PF('dlg').show();" type="button">
+                                            <p:commandButton value="Editar" onclick="PF('dlg').show();" type="button" rendered="#{sessionController.establecerpermisos()}">
                                                 <p:ajax event="dialogReturn" listener="#{peliculaController.edicion()}"/>
                                             </p:commandButton>
                                             <p:commandButton value="Alquilar" update="@form" process="@this"

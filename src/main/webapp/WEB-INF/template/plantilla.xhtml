@@ -23,6 +23,7 @@
             <h:form>
                 <p:menubar model="#{menuController.model}">
                     <f:facet name="options">
+                        <p:commandLink action="perfil.xhtml" value="Perfil"/>
                         <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
                         <p:commandButton value="Logout"
                                          actionListener="#{sessionController.cerrarSesion()}" icon="ui-icon-sign-out" action="/index?faces-redirect=true"/>
