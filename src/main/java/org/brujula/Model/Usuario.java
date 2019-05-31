@@ -1,6 +1,8 @@
 package org.brujula.Model;
 
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.Serializable;

@@ -24,7 +24,7 @@
                 <div class="form-row mb-4">
                     <div class="row">
                         <div class="col-md-4">
-                            <p:inputText id="txtDNI" value="#{registerController.persona.dni}" required="true"
+                            <p:inputText id="txtDNI" value="#{usuariosController.persona.dni}" required="true"
                                          placeholder="DNI"
                                          requiredMessage="Se requiere valor" styleClass="form-control">
                                 <f:validateRegex pattern="^[0-9]{8}[^IÑOU]"/>
@@ -33,14 +33,14 @@
                         </div>
 
                         <div class="col-md-4">
-                            <p:inputText id="txtNombre" value="#{registerController.persona.nombre}" required="true"
+                            <p:inputText id="txtNombre" value="#{usuariosController.persona.nombre}" required="true"
                                          requiredMessage="Se requiere valor" placeholder="Nombre"
                                          styleClass="form-control"/>
                             <p:message for="txtNombre"/>
                         </div>
 
                         <div class="col-md-4">
-                            <p:inputText id="txtApellidos" value="#{registerController.persona.apellidos}"
+                            <p:inputText id="txtApellidos" value="#{usuariosController.persona.apellidos}"
                                          required="true"
                                          requiredMessage="Se requiere valor" placeholder="Apellidos"
                                          styleClass="form-control"/>
@@ -50,7 +50,7 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <p:inputText id="txtTelefono" value="#{registerController.persona.telefono}" required="true"
+                            <p:inputText id="txtTelefono" value="#{usuariosController.persona.telefono}" required="true"
                                          placeholder="Telefono" styleClass="form-control"
                                          requiredMessage="Se requiere valor"/>
                             <p:message for="txtTelefono"/>
@@ -59,7 +59,7 @@
 
                         <div class="col-md-6">
                             <p:inputText id="txtEmail" styleClass="form-control mb-4" placeholder="E-mail"
-                                         value="#{registerController.persona.email}" required="true"/>
+                                         value="#{usuariosController.persona.email}" required="true"/>
                             <p:message for="txtEmail"/>
                         </div>
 
@@ -68,7 +68,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <p:outputLabel for="Sexo" value="Sexo"/>
-                            <p:selectOneRadio id="Sexo" value="#{registerController.persona.sexo}" unselectable="true"
+                            <p:selectOneRadio id="Sexo" value="#{usuariosController.persona.sexo}" unselectable="true"
                                               required="true">
                                 <f:selectItem itemValue="M" itemLabel="MASCULINO"/>
                                 <f:selectItem itemValue="F" itemLabel="FEMENINO"/>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-md-6">
                             <p:outputLabel for="txtFecha" value="Fec Nacimiento"/>
-                            <p:calendar id="txtFecha" value="#{registerController.persona.fechaNacimiento}" locale="es"
+                            <p:calendar id="txtFecha" value="#{usuariosController.persona.fechaNacimiento}" locale="es"
                                         required="true"/>
                             <p:message for="txtFecha"/>
                         </div>
@@ -90,20 +90,20 @@
                 <div class="form-row">
 
                     <div class="col-md-6">
-                        <p:inputText id="cboTipo" value="#{registerController.codigo.codigo}" styleClass="form-control"
+                        <p:inputText id="cboTipo" value="#{usuariosController.codigo.codigo}" styleClass="form-control"
                                      placeholder="Inserte su código promocional"/>
                         <p:message for="cboTipo"/>
                     </div>
 
                     <div class="col-md-6">
 
-                        <p:inputText id="txtUser" value="#{registerController.usuario.usuario}" required="true"
+                        <p:inputText id="txtUser" value="#{usuariosController.usuario.usuario}" required="true"
                                      requiredMessage="Campo Requerido" placeholder="Usuario" styleClass="form-control"/>
                         <p:message for="txtUser"/>
                     </div>
 
                     <div class="col-md-6">
-                        <p:password id="con1" value="#{registerController.contraseña}" required="true" match="con2"
+                        <p:password id="con1" value="#{usuariosController.contraseña}" required="true" match="con2"
                                     feedback="true" promptLabel="Ingrese una contraseña"
                                     requiredMessage="Campo Requerido"
                                     validatorMessage="Las contraseñas no coinciden" weakLabel="Débil"
@@ -123,7 +123,7 @@
                 <p:autoUpdate disabled="false"/>
             </p:growl>
             <p:commandButton value="Registrar" icon="ui-icon-check" styleClass="btn btn-success my-4"
-                             actionListener="#{registerController.registrar()}" />
+                             actionListener="#{usuariosController.registrar()}" />
             <p:button value="Volver" styleClass="btn btn-outline-info btn-rounded my-4 waves-effect z-depth-0"
                       outcome="/index?faces-redirect=true"/>
         </h:form>

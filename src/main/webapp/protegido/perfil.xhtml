@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="row" style="margin-bottom: 20px;">
-                                <p:password value="#{usuariosController.user.clave}"
+                                <p:password value="#{usuariosController.contraseña}"
                                             placeholder="Inserta Nueva clave" styleClass="form-control"/>
                             </div>
 
@@ -54,6 +54,11 @@
                             </div>
                             <div class="row" style="margin-bottom: 20px;">
                                 <p:inputText placeholder="guradar imagen de perfil"/>
+                            </div>
+
+                            <div class="row" style="margin-bottom: 20px;">
+                                <p:inputText placeholder="Insertar código promocional" value="#{usuariosController.codigo.codigo}"
+                                            styleClass="form-control"/>
                             </div>
 
                             <div class="row" style="margin-bottom: 20px;">
