@@ -12,7 +12,7 @@
         <ui:define name="content">
             <h2>Bienvenido al videoclub, #{menuController.mostrarUsuario()}</h2>
 
-            <p:dialog header="Editar Pelicula" widgetVar="dlg"  id="dlgEditar">
+            <p:dialog header="Editar Pelicula" widgetVar="dlg" id="dlgEditar">
                 <div class="container">
                     <h:form>
                         <div class="row">
@@ -22,7 +22,8 @@
                                 </p:selectOneMenu>
                             </div>
                             <div class="col-md-6">
-                                <p:inputText value="#{peliculaController.pelicula.titulo}" styleClass="form-control" placeholder="Editar Tiutlo"/>
+                                <p:inputText value="#{.titulo}"
+                                             styleClass="form-control" placeholder="Editar Tiutlo"/>
                             </div>
                         </div>
                         <div class="row">
@@ -53,14 +54,14 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="card img-fluid">
-                                        <p:graphicImage styleClass="card-img-top" width="360" value="./../resources/images/The_Godfather.jpg"
-                                             alt="Card image"/>
+                                        <p:graphicImage styleClass="card-img-top" width="360"
+                                                        value="./../resources/images/The_Godfather.jpg"
+                                                        alt="Card image"/>
                                         <div class="card-img-overlay">
                                             <h5 class="card-title">#{pelicula.titulo}</h5>
                                             <p class="card-body">#{pelicula.resumen}</p>
-                                            <p:commandButton value="Editar" onclick="PF('dlg').show();" type="button" rendered="#{sessionController.establecerpermisos()}">
-                                                <p:ajax event="dialogReturn" listener="#{peliculaController.edicion()}"/>
-                                            </p:commandButton>
+                                            <p:commandButton value="Editar" onclick="PF('dlg').show();" type="button"
+                                                             rendered="#{sessionController.establecerpermisos()}"/>
                                             <p:commandButton value="Alquilar" update="@form" process="@this"
                                                              disabled="#{alquilerController.estaAlquilada(pelicula)}"
                                                              actionListener="#{alquilerController.alquilarPelicula(pelicula)}"/>
@@ -75,5 +76,8 @@
             </div>
         </ui:define>
     </ui:composition>
+    <h:outputScript>
+
+    </h:outputScript>
 </h:body>
 </html>
