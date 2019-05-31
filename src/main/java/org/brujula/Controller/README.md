@@ -1,4 +1,4 @@
-##Controlador
+## Controlador
 
 Aquí está la parte del controlador que conecta la bbdd con la vista. Es el sistema que recolecta la información que ha 
 recibido del usuario, conecta con la bbdd y luego devuelva la información solicitada.
