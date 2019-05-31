@@ -18,6 +18,11 @@
 
 
                 <p:dialog widgetVar="edit" header="Editar Perfil" id="dlgEdit">
+
+                    <p:growl showDetail="true" sticky="true">
+                        <p:autoUpdate/>
+                    </p:growl>
+
                     <h:form>
                         <div class="container">
                             <div class="row" style="margin-bottom: 20px;">
@@ -62,9 +67,9 @@
                             </div>
 
                             <div class="row" style="margin-bottom: 20px;">
-                                <p:commandButton styleClass="btn btn-dark btn-outline-success" value="Editar" oncomplete="PF('dlg').hide()"
+                                <p:commandButton styleClass="btn btn-dark btn-outline-success" value="Editar" oncomplete="PF('edit').hide()"
                                                  actionListener="#{usuariosController.editar()}" update=":muestraCaracteristicas"/>
-                                <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('dlg').hide()"
+                                <p:commandButton value="Cancelar" immediate="true" oncomplete="PF('edit').hide()"
                                                  styleClass="btn btn-dark btn-outline-danger"/>
                             </div>
                         </div>
